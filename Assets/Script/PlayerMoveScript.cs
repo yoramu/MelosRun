@@ -7,27 +7,34 @@ public class PlayerMoveScript : MonoBehaviour {
     public GameObject Player;
     public const int MaxJumpCount = 2;
     public bool isJumping = false;
-    public float Upspeed; //ジャンプのスピード
-    public float speed = 0;
 
     private Rigidbody PlayerRigid;
+
+    public float Upspeed; //ジャンプのスピード
     // Start is called before the first frame update
+    public bool directionFlag;
     void Start () {
         PlayerRigid = Player.GetComponent<Rigidbody> ();
         footCollider = transform.GetChild (0).gameObject;
+        directionFlag = false;
     }
 
     // Update is called once per frame
     void Update () {
         JumpColliderScript j = footCollider.GetComponent<JumpColliderScript> ();
-        speed = Input.GetAxis ("Horizontal");
-        Debug.Log (speed);
-        if (speed < 0) {
-            transform.rotation = Quaternion.Euler (-90f, -90f, 180f);
-        } else {
-            transform.rotation = Quaternion.Euler (-90f, -90f, -180f);
+        PlayerRigid.position += new Vector3 (Input.GetAxis ("Horizontal") * Time.deltaTime * 5, 0.0f, 0.0f);
+        
+        if (Input.GetKeyDown("right") && directionFlag)
+        {
+            transform.Rotate(new Vector3(0,0,180));
+            directionFlag = false;
         }
-        PlayerRigid.position += new Vector3 (speed * Time.deltaTime * 5, 0.0f, 0.0f);
+        if (Input.GetKeyDown("left") && !directionFlag)
+        {
+            transform.Rotate(new Vector3(0,0,-180));
+            directionFlag = true;
+        }
+
 
         if (j.jumpCount < MaxJumpCount && Input.GetKeyDown (KeyCode.Space)) {
             isJumping = true;
