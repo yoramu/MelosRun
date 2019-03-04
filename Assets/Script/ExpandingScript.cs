@@ -16,7 +16,6 @@ public class ExpandingScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Debug.Log (stackFlag);
         if (smallFlag) {
             tmpTime2 += Time.deltaTime;
             if (tmpTime2 >= interval) {

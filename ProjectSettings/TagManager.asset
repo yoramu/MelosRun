@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GrabWall
+  - Coin
+  - enemy
   layers:
   - Default
   - TransparentFX
