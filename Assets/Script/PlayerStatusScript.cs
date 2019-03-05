@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 public class PlayerStatusScript : MonoBehaviour {
     public float PlayerHP;
     public float InvincibleTime;
-    public bool isInvincible;
     public GameObject target;
+    private bool isInvincible;
+    private float tmpTime;
     // Start is called before the first frame update
     void Start () {
         PlayerHP = 100;
         isInvincible = false;
         InvincibleTime = 100;
+        tmpTime = InvincibleTime;
     }
 
     // Update is called once per frame
@@ -24,10 +26,10 @@ public class PlayerStatusScript : MonoBehaviour {
         }
         //無敵状態フラグ
         if (isInvincible) {
-            InvincibleTime--;
-            if (InvincibleTime < 1) {
+            tmpTime--;
+            if (tmpTime < 1) {
                 isInvincible = false;
-                InvincibleTime = 100;
+                tmpTime = InvincibleTime;
             }
         }
     }
