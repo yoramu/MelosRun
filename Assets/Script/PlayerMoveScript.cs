@@ -28,11 +28,11 @@ public class PlayerMoveScript : MonoBehaviour {
         PlayerRigid.position += new Vector3 (direction * Time.deltaTime * 5, 0.0f, 0.0f);
         //キャラの向き
         if (direction > 0 && directionFlag) {
-            transform.rotation = Quaternion.Euler(-90,0,270);
+            transform.rotation = Quaternion.Euler (-90, 0, 270);
             directionFlag = false;
         }
         if (direction < 0 && !directionFlag) {
-            transform.rotation = Quaternion.Euler(-90,0,90);
+            transform.rotation = Quaternion.Euler (-90, 0, 90);
             directionFlag = true;
         }
         //ジャンプフラグ
@@ -50,9 +50,5 @@ public class PlayerMoveScript : MonoBehaviour {
             PlayerRigid.velocity = Vector3.zero;
             j.jumpCount = 0;
         }
-    }
-
-    public void directionFlagSetter(){
-
     }
 }
