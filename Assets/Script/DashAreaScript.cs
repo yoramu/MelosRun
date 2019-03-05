@@ -19,7 +19,6 @@ public class DashAreaScript : MonoBehaviour
     private void OnTriggerStay(Collider other){
         if(other.gameObject.CompareTag("Player")){
             other.attachedRigidbody.AddForce(new Vector3(0.1f,0f,0f) , ForceMode.Impulse);
-            // other.gameObject.transform.position += new Vector3(0.04f, 0f , 0f);
         }
     }
 }
