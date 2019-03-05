@@ -7,7 +7,7 @@ public class PlayerStatusScript : MonoBehaviour {
     public float PlayerHP;
     public float InvincibleTime;
     public GameObject target;
-    private bool isInvincible;
+    public bool isInvincible;
     private float tmpTime;
     // Start is called before the first frame update
     void Start () {
