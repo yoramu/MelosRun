@@ -38,8 +38,10 @@ public class ExpandingScript : MonoBehaviour {
                 if (stackFlag > 40) {
                     transform.localScale += new Vector3 (0f, 0.5f, 0f);
                 }
-                transform.localScale += new Vector3 (para, para, para);
-                para *= -1f;
+                else{
+                    transform.localScale += new Vector3 (para, para, para);
+                    para *= -1f;
+                }
                 stackFlag += 1;
                 tmpTime1 = 0;
             }
