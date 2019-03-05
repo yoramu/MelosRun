@@ -7,6 +7,7 @@ public class PlayerStatusScript : MonoBehaviour {
     public float PlayerHP;
     public float InvincibleTime;
     public bool isInvincible;
+    public GameObject target;
     // Start is called before the first frame update
     void Start () {
         PlayerHP = 100;
@@ -18,7 +19,8 @@ public class PlayerStatusScript : MonoBehaviour {
     void Update () {
         if (PlayerHP < 1) {
             Destroy (gameObject);
-            SceneManager.LoadScene ("GameOverScene");
+            Instantiate (target, transform.localPosition, transform.rotation);
+            //SceneManager.LoadScene ("GameOverScene");
         }
         //無敵状態フラグ
         if (isInvincible) {
