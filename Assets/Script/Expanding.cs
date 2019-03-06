@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExpandingScript : MonoBehaviour {
+public class Expanding : MonoBehaviour {
     // Start is called before the first frame update
 
     private bool flag = true;
@@ -37,8 +37,7 @@ public class ExpandingScript : MonoBehaviour {
             if (tmpTime1 >= interval) {
                 if (stackFlag > 40) {
                     transform.localScale += new Vector3 (0f, 0.5f, 0f);
-                }
-                else{
+                } else {
                     transform.localScale += new Vector3 (para, para, para);
                     para *= -1f;
                 }

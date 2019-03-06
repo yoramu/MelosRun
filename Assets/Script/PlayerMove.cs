@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveScript : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
     public GameObject footCollider;
     public GameObject grabCollider;
     public GameObject Player;

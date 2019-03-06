@@ -18,7 +18,6 @@ public class RotateBoost : MonoBehaviour {
     void Update () {
         transform.Rotate (0f, 50f, 0f);
         if (stoppingRotateFlag) {
-            Debug.Log (z);
             if (z <= 10f) {
                 player.transform.Rotate (new Vector3 (0f, 0f, z));
                 //Debug.Log(player.transform.rotation.eulerAngles.y);
@@ -27,7 +26,7 @@ public class RotateBoost : MonoBehaviour {
                     stoppingRotateFlag = false;
                     z = 30f;
                     player.transform.rotation = Quaternion.Euler (-90, 0, 270);
-                    player.GetComponent<PlayerMoveScript> ().directionFlag = false;
+                    player.GetComponent<PlayerMove> ().directionFlag = false;
                 }
             } else {
                 tempTime1 += Time.deltaTime;

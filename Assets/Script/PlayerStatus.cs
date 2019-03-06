@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStatusScript : MonoBehaviour {
+public class PlayerStatus : MonoBehaviour {
     public float PlayerHP;
     public float InvincibleTime;
     public GameObject target;
+    private MeshRenderer mesh;
     private bool isInvincible;
     private float tmpTime;
+    private float meshTime;
     // Start is called before the first frame update
     void Start () {
-        PlayerHP = 100;
+        mesh = GetComponent<MeshRenderer> ();
+        PlayerHP = 3;
         isInvincible = false;
-        InvincibleTime = 100;
+        InvincibleTime = 3;
+        meshTime = 0;
         tmpTime = InvincibleTime;
     }
 
@@ -26,8 +30,13 @@ public class PlayerStatusScript : MonoBehaviour {
         }
         //無敵状態フラグ
         if (isInvincible) {
-            tmpTime--;
-            if (tmpTime < 1) {
+            tmpTime -= Time.deltaTime;
+            mesh.enabled = false;
+            if (tmpTime * 10 % 2 > 1) {
+                mesh.enabled = true;
+            }
+            if (tmpTime < 0) {
+                mesh.enabled = true;
                 isInvincible = false;
                 tmpTime = InvincibleTime;
             }
@@ -36,7 +45,7 @@ public class PlayerStatusScript : MonoBehaviour {
     public void OnCollisionStay (Collision collision) {
         if (!isInvincible) {
             if (collision.gameObject.CompareTag ("enemy")) {
-                PlayerHP -= 20;
+                PlayerHP -= 1;
                 isInvincible = true;
             }
         }
