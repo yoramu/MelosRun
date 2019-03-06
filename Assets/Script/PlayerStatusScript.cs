@@ -9,6 +9,8 @@ public class PlayerStatusScript : MonoBehaviour {
     public GameObject target;
     public bool isInvincible;
     private float tmpTime;
+    public bool isAttack = false;
+
     // Start is called before the first frame update
     void Start () {
         PlayerHP = 100;
@@ -34,11 +36,14 @@ public class PlayerStatusScript : MonoBehaviour {
         }
     }
     public void OnCollisionStay (Collision collision) {
-        if (!isInvincible) {
             if (collision.gameObject.CompareTag ("enemy")) {
-                PlayerHP -= 20;
-                isInvincible = true;
-            }
+                if (!isInvincible) {
+                    PlayerHP -= 20;
+                    isInvincible = true;
+                }
+                if(isAttack){
+                    Destroy (collision.gameObject);
+                }
         }
     }
 }

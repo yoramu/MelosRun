@@ -27,6 +27,7 @@ public class RotateBoost : MonoBehaviour {
                     player.transform.rotation = Quaternion.Euler (-90, 0, 270);
                     player.GetComponent<PlayerMoveScript> ().isDirectionRight = false;
                     player.GetComponent<PlayerStatusScript> ().isInvincible = false;
+                    player.GetComponent<PlayerStatusScript> ().isAttack = false;
                 }
             } else {
                 tempTime1 += Time.deltaTime;
@@ -43,6 +44,7 @@ public class RotateBoost : MonoBehaviour {
         player = other.transform.root.gameObject;
         if (other.gameObject.name == "JumpCollider") {
             player.GetComponent<PlayerStatusScript> ().isInvincible = true;
+            player.GetComponent<PlayerStatusScript> ().isAttack = true;
             isStoppingRotate = false;
             z = 30f;
             player.transform.Rotate (new Vector3 (0f, 0f, 30f));
