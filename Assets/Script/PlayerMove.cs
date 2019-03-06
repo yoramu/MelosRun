@@ -36,14 +36,16 @@ public class PlayerMove : MonoBehaviour {
             isDirectionRight = true;
         }
         //ジャンプフラグ
+        Debug.Log (j.jumpCount);
+        //Debug.Log ("E" + j.isExitCollider);
+        //Debug.Log (isJumping);
         if (j.jumpCount < MaxJumpCount && Input.GetKeyDown (KeyCode.Space)) {
-            isJumping = true;
-        }
-        if (isJumping) {
             PlayerRigid.velocity = Vector3.zero;
             PlayerRigid.AddForce (0f, Upspeed, 0f);
-            j.jumpCount++;
-            isJumping = false;
+            isJumping = true;
+            if (j.isExitCollider) {
+                j.jumpCount++;
+            }
         }
         //壁掴み
         if (g.isCanGrabWall && Input.GetKey (KeyCode.G)) {

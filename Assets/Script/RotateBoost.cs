@@ -51,6 +51,8 @@ public class RotateBoost : MonoBehaviour {
     }
 
     private void OnTriggerExit (Collider other) {
-        isStoppingRotate = true;
+        if (other.gameObject.name == "JumpCollider") {
+            isStoppingRotate = true;
+        }
     }
 }

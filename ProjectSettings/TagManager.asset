@@ -7,6 +7,8 @@ TagManager:
   - GrabWall
   - Coin
   - enemy
+  - Nonfloor
+  - floor
   layers:
   - Default
   - TransparentFX
