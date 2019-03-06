@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour {
+    private GameObject target;
+    private MeshRenderer mesh;
+
     public float PlayerHP;
     public float InvincibleTime;
-    public GameObject target;
-    private MeshRenderer mesh;
     private bool isInvincible;
     private float tmpTime;
     private float meshTime;
+    public bool isAttack = false;
+
     // Start is called before the first frame update
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
@@ -43,10 +46,13 @@ public class PlayerStatus : MonoBehaviour {
         }
     }
     public void OnCollisionStay (Collision collision) {
-        if (!isInvincible) {
-            if (collision.gameObject.CompareTag ("enemy")) {
+        if (collision.gameObject.CompareTag ("enemy")) {
+            if (!isInvincible) {
                 PlayerHP -= 1;
                 isInvincible = true;
+            }
+            if (isAttack) {
+                Destroy (collision.gameObject);
             }
         }
     }
