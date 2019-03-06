@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour {
-    private GameObject target;
+    public GameObject target;
     private MeshRenderer mesh;
 
     public float PlayerHP;
