@@ -22,8 +22,8 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        JumpColliderScript j = footCollider.GetComponent<JumpColliderScript> ();
-        GrabColliderScript g = grabCollider.GetComponent<GrabColliderScript> ();
+        JumpCollider j = footCollider.GetComponent<JumpCollider> ();
+        GrabCollider g = grabCollider.GetComponent<GrabCollider> ();
         direction = Input.GetAxis ("Horizontal");
         PlayerRigid.position += new Vector3 (direction * Time.deltaTime * 5, 0.0f, 0.0f);
         //キャラの向き

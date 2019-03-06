@@ -9,10 +9,10 @@ public class PlayerStatus : MonoBehaviour {
 
     public float PlayerHP;
     public float InvincibleTime;
-    private bool isInvincible;
+    public bool isInvincible;
+    public bool isAttack = false;
     private float tmpTime;
     private float meshTime;
-    public bool isAttack = false;
 
     // Start is called before the first frame update
     void Start () {
@@ -43,11 +43,13 @@ public class PlayerStatus : MonoBehaviour {
                 isInvincible = false;
                 tmpTime = InvincibleTime;
             }
+        } else {
+            mesh.enabled = true;
         }
     }
     public void OnCollisionStay (Collision collision) {
         if (collision.gameObject.CompareTag ("enemy")) {
-            if (!isInvincible) {
+            if (!isInvincible && !isAttack) {
                 PlayerHP -= 1;
                 isInvincible = true;
             }

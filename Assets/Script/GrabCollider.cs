@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabColliderScript : MonoBehaviour {
+public class GrabCollider : MonoBehaviour {
     public bool isCanGrabWall = false;
     public void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("GrabWall")) {

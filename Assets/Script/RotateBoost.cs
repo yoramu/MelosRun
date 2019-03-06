@@ -43,7 +43,6 @@ public class RotateBoost : MonoBehaviour {
     private void OnTriggerStay (Collider other) {
         player = other.transform.root.gameObject;
         if (other.gameObject.name == "JumpCollider") {
-            player.GetComponent<PlayerStatus> ().isInvincible = true;
             player.GetComponent<PlayerStatus> ().isAttack = true;
             isStoppingRotate = false;
             z = 30f;
