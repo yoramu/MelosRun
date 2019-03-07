@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour {
     public bool isJumping = false;
     public float Upspeed; //ジャンプのスピード
     public float direction = 0;
+    public float test;
 
     private Rigidbody PlayerRigid;
     public bool isDirectionRight = false;
@@ -22,6 +23,7 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        test = PlayerRigid.velocity.y;
         JumpCollider j = footCollider.GetComponent<JumpCollider> ();
         GrabCollider g = grabCollider.GetComponent<GrabCollider> ();
         direction = Input.GetAxis ("Horizontal");
@@ -36,7 +38,7 @@ public class PlayerMove : MonoBehaviour {
             isDirectionRight = true;
         }
         //ジャンプフラグ
-        Debug.Log (j.jumpCount);
+        //Debug.Log (j.jumpCount);
         //Debug.Log ("E" + j.isExitCollider);
         //Debug.Log (isJumping);
         if (j.jumpCount < MaxJumpCount && Input.GetKeyDown (KeyCode.Space)) {
