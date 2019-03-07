@@ -31,7 +31,7 @@ public class Expanding : MonoBehaviour {
     }
 
     private void OnTriggerStay (Collider other) {
-        if (other.gameObject.name == "JumpCollider") {
+        if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
             tmpTime1 += Time.deltaTime;
             if (tmpTime1 >= interval) {
@@ -48,7 +48,7 @@ public class Expanding : MonoBehaviour {
     }
 
     private void OnTriggerExit (Collider other) {
-        if (other.gameObject.name == "JumpCollider") {
+        if (other.gameObject.name == "FootCollider") {
             smallFlag = true;
             if (stackFlag > 41) {
                 stackFlag = 0;
