@@ -42,7 +42,7 @@ public class RotateBoost : MonoBehaviour {
 
     private void OnTriggerStay (Collider other) {
         player = other.transform.root.gameObject;
-        if (other.gameObject.name == "JumpCollider") {
+        if (other.gameObject.name == "FootCollider") {
             player.GetComponent<PlayerStatus> ().isAttack = true;
             isStoppingRotate = false;
             z = 30f;
@@ -51,7 +51,7 @@ public class RotateBoost : MonoBehaviour {
     }
 
     private void OnTriggerExit (Collider other) {
-        if (other.gameObject.name == "JumpCollider") {
+        if (other.gameObject.name == "FootCollider") {
             isStoppingRotate = true;
         }
     }

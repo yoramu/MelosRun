@@ -7,20 +7,16 @@ public class PlayerStatus : MonoBehaviour {
     public GameObject target;
     private MeshRenderer mesh;
 
-    public float PlayerHP;
-    public float InvincibleTime;
-    public bool isInvincible;
+    public bool isInvincible = false;
     public bool isAttack = false;
+    private float PlayerHP = 3;
+    private float InvincibleTime = 3;
+    private float meshTime = 0;
     private float tmpTime;
-    private float meshTime;
 
     // Start is called before the first frame update
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
-        PlayerHP = 3;
-        isInvincible = false;
-        InvincibleTime = 3;
-        meshTime = 0;
         tmpTime = InvincibleTime;
     }
 
