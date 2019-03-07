@@ -12,9 +12,11 @@ public class JumpCollider : MonoBehaviour {
     }
     public void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("floor")) {
-            jumpCount = 0;
             isExitCollider = false;
             player.GetComponent<PlayerMove> ().isJumping = false;
+            if (player.GetComponent<Rigidbody> ().velocity.y <= 1f) {
+                jumpCount = 0;
+            }
         }
     }
     public void OnTriggerExit (Collider other) {
