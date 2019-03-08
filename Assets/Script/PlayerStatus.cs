@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour {
     public GameObject target;
+    private GameObject ContinueButton;
+    private GameObject GameOverText;
     private MeshRenderer mesh;
 
     public bool isInvincible = false;
@@ -14,10 +16,15 @@ public class PlayerStatus : MonoBehaviour {
     private float meshTime = 0;
     private float tmpTime;
 
+
     // Start is called before the first frame update
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         tmpTime = InvincibleTime;
+        ContinueButton = GameObject.Find ("ContinueButton");
+        GameOverText = GameObject.Find ("GameOverText");
+        ContinueButton.SetActive(false);
+        GameOverText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,6 +32,8 @@ public class PlayerStatus : MonoBehaviour {
         if (PlayerHP < 1) {
             Destroy (gameObject);
             Instantiate (target, transform.localPosition, transform.rotation);
+            ContinueButton.SetActive(true);
+            GameOverText.SetActive(true);
             //SceneManager.LoadScene ("GameOverScene");
         }
         //無敵状態フラグ
