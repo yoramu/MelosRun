@@ -16,15 +16,14 @@ public class PlayerStatus : MonoBehaviour {
     private float meshTime = 0;
     private float tmpTime;
 
-
     // Start is called before the first frame update
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         tmpTime = InvincibleTime;
         ContinueButton = GameObject.Find ("ContinueButton");
         GameOverText = GameObject.Find ("GameOverText");
-        ContinueButton.SetActive(false);
-        GameOverText.SetActive(false);
+        ContinueButton.SetActive (false);
+        GameOverText.SetActive (false);
     }
 
     // Update is called once per frame
@@ -32,11 +31,17 @@ public class PlayerStatus : MonoBehaviour {
         if (PlayerHP < 1) {
             Destroy (gameObject);
             Instantiate (target, transform.localPosition, transform.rotation);
+<<<<<<< HEAD
             ContinueButton.SetActive(true);
             GameOverText.SetActive(true);
             if(Input.GetKeyDown(KeyCode.KeypadEnter)){
                 SceneManager.LoadScene("MainGameScene");
             }
+=======
+            ContinueButton.SetActive (true);
+            GameOverText.SetActive (true);
+            //SceneManager.LoadScene ("GameOverScene");
+>>>>>>> 9bb034ddb6defcfb79bc93e5719c92bfad280c86
         }
         //無敵状態フラグ
         if (isInvincible) {
