@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DecisionGameOver : MonoBehaviour {
     public GameObject Player;
@@ -10,6 +11,7 @@ public class DecisionGameOver : MonoBehaviour {
     public GameObject target;
     public int PlayerHP;
     public bool flag = false;
+    private double tmpTime = 0;
     void Start () {
         GameOverText = GameObject.Find ("GameOverText");
         GameOverText.SetActive (false);
@@ -28,12 +30,13 @@ public class DecisionGameOver : MonoBehaviour {
             //Destroy (Player);
         }
         if (flag) {
+            tmpTime += Time.deltaTime;
+            PleasePush.SetActive (false);
+            if (tmpTime * 1 % 2 > 1) {
+                PleasePush.SetActive (true);
+            }
             if (Input.GetKeyDown (KeyCode.Return)) {
                 SceneManager.LoadScene ("MainGameScene");
-                Mesh.enabled = false;
-                if (tmpTime * 10 % 4 > 2) {
-                    Mesh.enabled = true;
-                }
             }
         }
     }
