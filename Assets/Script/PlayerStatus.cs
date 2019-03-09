@@ -34,7 +34,9 @@ public class PlayerStatus : MonoBehaviour {
             Instantiate (target, transform.localPosition, transform.rotation);
             ContinueButton.SetActive(true);
             GameOverText.SetActive(true);
-            //SceneManager.LoadScene ("GameOverScene");
+            if(Input.GetKeyDown(KeyCode.KeypadEnter)){
+                SceneManager.LoadScene("MainGameScene");
+            }
         }
         //無敵状態フラグ
         if (isInvincible) {
