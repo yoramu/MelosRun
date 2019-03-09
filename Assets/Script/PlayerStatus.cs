@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour {
     public GameObject target;
     private GameObject GameOverText;
     private MeshRenderer mesh;
+    public Text scoreText;
 
     public bool isInvincible = false;
     public bool isAttack = false;
@@ -14,6 +16,7 @@ public class PlayerStatus : MonoBehaviour {
     private float InvincibleTime = 3;
     private float meshTime = 0;
     private float tmpTime;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start () {
@@ -21,6 +24,7 @@ public class PlayerStatus : MonoBehaviour {
         tmpTime = InvincibleTime;
         GameOverText = GameObject.Find ("GameOverText");
         GameOverText.SetActive (false);
+        scoreText.text = "Score:" + score;
     }
 
     // Update is called once per frame
@@ -56,6 +60,13 @@ public class PlayerStatus : MonoBehaviour {
             if (isAttack) {
                 Destroy (collision.gameObject);
             }
+        }
+    }
+
+    public void OnTriggerEnter (Collider other) {
+        if (other.gameObject.CompareTag ("Coin")) {
+            score += 100;
+            scoreText.text = "Score:" + score;
         }
     }
 }
