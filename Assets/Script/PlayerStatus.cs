@@ -20,9 +20,7 @@ public class PlayerStatus : MonoBehaviour {
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         tmpTime = InvincibleTime;
-        ContinueButton = GameObject.Find ("ContinueButton");
         GameOverText = GameObject.Find ("GameOverText");
-        ContinueButton.SetActive (false);
         GameOverText.SetActive (false);
     }
 
@@ -31,7 +29,6 @@ public class PlayerStatus : MonoBehaviour {
         if (PlayerHP < 1) {
             Destroy (gameObject);
             Instantiate (target, transform.localPosition, transform.rotation);
-            ContinueButton.SetActive (true);
             GameOverText.SetActive (true);
             //SceneManager.LoadScene ("GameOverScene");
         }
