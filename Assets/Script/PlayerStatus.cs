@@ -21,6 +21,7 @@ public class PlayerStatus : MonoBehaviour {
         tmpTime = InvincibleTime;
         GameOverText = GameObject.Find ("GameOverText");
         GameOverText.SetActive (false);
+
     }
 
     // Update is called once per frame
