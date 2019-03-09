@@ -6,14 +6,10 @@ public class PlayerMove : MonoBehaviour {
     public GameObject Player;
     public bool isDirectionRight = false;
     public float direction = 0;
-
     private Rigidbody PlayerRigid;
-    // Start is called before the first frame update
     void Start () {
         PlayerRigid = Player.GetComponent<Rigidbody> ();
     }
-
-    // Update is called once per frame
     void Update () {
         direction = Input.GetAxis ("Horizontal");
         PlayerRigid.position += new Vector3 (direction * Time.deltaTime * 5, 0.0f, 0.0f);
