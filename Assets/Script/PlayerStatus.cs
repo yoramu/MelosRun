@@ -6,19 +6,22 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour {
     private MeshRenderer mesh;
+    public GameObject Canvas;
+    public GameObject target;
     public Text scoreText;
-
     public bool isInvincible = false;
     public bool isAttack = false;
+    public bool isDeath = false;
     public int PlayerHP = 3;
     private float InvincibleTime = 3;
     private float meshTime = 0;
     private float tmpTime;
-    private int score = 0;
+    public int score = 0;
 
     // Start is called before the first frame update
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
+        Canvas = GameObject.Find ("CanvasGUI");
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
     }
@@ -41,6 +44,14 @@ public class PlayerStatus : MonoBehaviour {
         } else {
             mesh.enabled = true;
         }
+        //死亡フラグ
+        if (PlayerHP < 1 || Canvas.GetComponent<LimitTime> ().limitTime < 0) {
+            gameObject.SetActive (false);
+            isDeath = true;
+            Instantiate (target, transform.localPosition, transform.rotation);
+        }
+        //スコア
+        scoreText.text = "Score:" + score;
     }
     public void OnCollisionStay (Collision collision) {
         if (collision.gameObject.CompareTag ("enemy")) {
@@ -51,13 +62,6 @@ public class PlayerStatus : MonoBehaviour {
             if (isAttack) {
                 Destroy (collision.gameObject);
             }
-        }
-    }
-
-    public void OnTriggerEnter (Collider other) {
-        if (other.gameObject.CompareTag ("Coin")) {
-            score += 100;
-            scoreText.text = "Score:" + score;
         }
     }
 }
