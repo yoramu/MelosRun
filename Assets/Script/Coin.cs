@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour {
+    public PlayerStatus PlayerStatus;
     private bool isMoveUp = false;
     private float upTime;
     private float tmpTime;
     // Start is called before the first frame update
     void Start () {
+        PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
         upTime = 1;
         tmpTime = upTime;
     }
@@ -28,7 +30,8 @@ public class Coin : MonoBehaviour {
         }
     }
     public void OnTriggerEnter (Collider other) {
-        if (other.gameObject.CompareTag ("Player")) {
+        if (other.gameObject.CompareTag ("Player") && !isMoveUp) {
+            PlayerStatus.score += 100;
             isMoveUp = true;
         }
     }
