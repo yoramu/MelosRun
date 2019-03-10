@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabCollider : MonoBehaviour {
-    public bool isCanGrabWall = false;
+    private bool isCanGrabWall = false;
     public GameObject player;
     private Rigidbody playerRigid;
     private FootCollider foot;

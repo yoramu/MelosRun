@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LimitTime : MonoBehaviour {
     public Text limitTimeText;
-    public float limitTime = 100;
+    [SerializeField] private float limitTime = 100;
     // Start is called before the first frame update
     void Start () {
         limitTimeText.text = "Time:" + limitTime;

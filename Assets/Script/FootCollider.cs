@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FootCollider : MonoBehaviour {
     public int jumpCount = 0;
-    public const int MaxJumpCount = 2;
+    [SerializeField] private int MaxJumpCount = 2;
     public bool isJumping = false;
     public bool isExitCollider = false;
-    public float Upspeed = 5000;
+    [SerializeField] private float Upspeed = 5000;
     public GameObject player;
     private Rigidbody playerRigid;
     // Start is called before the first frame update

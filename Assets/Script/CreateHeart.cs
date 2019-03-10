@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateHeart : MonoBehaviour {
     public GameObject Canvas;
     public PlayerStatus PlayerStatus;
-    public float x = 0;
+    private float x = 0;
     // Start is called before the first frame update
     void Start () {
         x = 40;

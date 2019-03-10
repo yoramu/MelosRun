@@ -5,7 +5,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour {
     public PlayerStatus PlayerStatus;
     private bool isMoveUp = false;
-    private float upTime;
+    [SerializeField] private float upTime;
     private float tmpTime;
     // Start is called before the first frame update
     void Start () {
