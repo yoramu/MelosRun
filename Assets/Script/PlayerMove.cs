@@ -16,13 +16,15 @@ public class PlayerMove : MonoBehaviour {
         //キャラの向き
         if (direction > 0 && isDirectionRight) {
             transform.rotation = Quaternion.Euler (-90, 0, 270);
-            //transform.rotation = Quaternion.Euler (-90, 0, 300);
             isDirectionRight = false;
         }
         if (direction < 0 && !isDirectionRight) {
             transform.rotation = Quaternion.Euler (-90, 0, 90);
-            //transform.rotation = Quaternion.Euler (-90, 0, 60);
             isDirectionRight = true;
+        }
+        if (Input.GetKey ("down")) {
+            float z = 1 / 2;
+            transform.localScale = new Vector3 (1, 1, z);
         }
     }
 }
