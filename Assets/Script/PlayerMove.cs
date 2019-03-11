@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
     public GameObject Player;
     public bool isDirectionRight = false;
-    public float direction = 0;
+    [SerializeField] private float direction = 0;
     private Rigidbody PlayerRigid;
     void Start () {
         PlayerRigid = Player.GetComponent<Rigidbody> ();

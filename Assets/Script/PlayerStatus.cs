@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour {
     private MeshRenderer mesh;
     public GameObject Canvas;
     public GameObject target;
+    public CreateHeart CreateHeart;
     public Text scoreText;
     public bool isInvincible = false;
     public bool isAttack = false;
@@ -22,6 +23,7 @@ public class PlayerStatus : MonoBehaviour {
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         Canvas = GameObject.Find ("CanvasGUI");
+        CreateHeart = Canvas.GetComponent<CreateHeart> ();
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
     }
@@ -58,6 +60,7 @@ public class PlayerStatus : MonoBehaviour {
             if (!isInvincible && !isAttack) {
                 PlayerHP -= 1;
                 isInvincible = true;
+                Destroy (CreateHeart.listObj[PlayerHP]);
             }
             if (isAttack) {
                 Destroy (collision.gameObject);
