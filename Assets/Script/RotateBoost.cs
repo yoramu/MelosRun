@@ -17,11 +17,11 @@ public class RotateBoost : MonoBehaviour {
     void Update () {
         transform.Rotate (0f, 50f, 0f);
         if (isStoppingRotate) {
-            if (z <= 10f) {
+            if (z <= 20f) {
                 player.transform.Rotate (new Vector3 (0f, 0f, z));
                 //Debug.Log(player.transform.rotation.eulerAngles.y);
                 float ptrz = player.transform.rotation.eulerAngles.y;
-                if (265 < ptrz && ptrz < 275) {
+                if (260 < ptrz && ptrz < 280) {
                     isStoppingRotate = false;
                     z = 30f;
                     player.transform.rotation = Quaternion.Euler (-90, 0, 270);
@@ -33,7 +33,7 @@ public class RotateBoost : MonoBehaviour {
                 tempTime1 += Time.deltaTime;
                 player.transform.Rotate (new Vector3 (0f, 0f, z));
                 if (tempTime1 >= interval) {
-                    z -= 1.0f;
+                    z -= 0.5f;
                     tempTime1 = 0;
                 }
             }
