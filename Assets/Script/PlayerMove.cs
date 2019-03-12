@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
     public GameObject Player;
     public bool isDirectionRight = false;
+    private bool isSquat = false;
     [SerializeField] private float direction = 0;
     private Rigidbody PlayerRigid;
+    private CapsuleCollider PlayerCollider;
     void Start () {
         PlayerRigid = Player.GetComponent<Rigidbody> ();
+        PlayerCollider = Player.GetComponent<CapsuleCollider> ();
     }
     void Update () {
         direction = Input.GetAxis ("Horizontal");
@@ -23,7 +26,11 @@ public class PlayerMove : MonoBehaviour {
             isDirectionRight = true;
         }
         if (Input.GetKey ("down")) {
-            gameObject.transform.localScale = new Vector3 (1, 1, 0.7f);
+            //gameObject.transform.localScale = new Vector3 (1, 1, 0.7f);
+            PlayerCollider.height = 0.7f;
+        }
+        if (Input.GetKeyUp ("down")) {
+            PlayerCollider.height = 1.2f;
         }
     }
 }
