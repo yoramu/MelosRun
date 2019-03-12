@@ -23,8 +23,7 @@ public class PlayerMove : MonoBehaviour {
             isDirectionRight = true;
         }
         if (Input.GetKey ("down")) {
-            float z = 1 / 2;
-            transform.localScale = new Vector3 (1, 1, z);
+            gameObject.transform.localScale = new Vector3 (1, 1, 0.7f);
         }
     }
 }
