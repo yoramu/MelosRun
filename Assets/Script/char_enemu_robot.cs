@@ -12,8 +12,6 @@ public class char_enemu_robot : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         child.transform.Rotate (new Vector3 (0f, 50f, 0f));
-
     }
 }
