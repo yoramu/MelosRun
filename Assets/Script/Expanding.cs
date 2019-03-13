@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Expanding : MonoBehaviour {
-    // Start is called before the first frame update
-
     private bool flag = true;
     private float para = 0.05f;
     private float interval = 0.05f;
@@ -12,15 +10,16 @@ public class Expanding : MonoBehaviour {
     private float tmpTime2 = 0f;
     private int stackFlag = 0;
     private bool smallFlag = true;
+    public float scale = 1.0f;
     void Start () { }
-
     // Update is called once per frame
     void Update () {
         if (smallFlag) {
             tmpTime2 += Time.deltaTime;
             if (tmpTime2 >= interval) {
                 if (transform.localScale.y > 1.1) {
-                    transform.localScale += new Vector3 (0f, -1f, 0f);
+                    transform.localScale += new Vector3 (0f, -1 * scale / 2.0f, 0f);
+                    transform.position += new Vector3 (0f, -1 * scale / 4.0f, 0f);
                 }
                 if (transform.localScale.y < 1.0) {
                     transform.localScale = new Vector3 (1, 1, 1);
@@ -29,14 +28,16 @@ public class Expanding : MonoBehaviour {
             }
         }
     }
-
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
             tmpTime1 += Time.deltaTime;
             if (tmpTime1 >= interval) {
-                if (stackFlag > 40) {
-                    transform.localScale += new Vector3 (0f, 0.5f, 0f);
+                if (stackFlag > 20) {
+                    if (transform.localScale.y < 20) {
+                        transform.localScale += new Vector3 (0f, scale / 2.0f, 0f);
+                        transform.position += new Vector3 (0f, scale / 4.0f, 0f);
+                    }
                 } else {
                     transform.localScale += new Vector3 (para, para, para);
                     para *= -1f;
