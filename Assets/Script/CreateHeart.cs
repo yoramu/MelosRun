@@ -15,9 +15,13 @@ public class CreateHeart : MonoBehaviour {
         GameObject HeartPrefab = (GameObject) Resources.Load ("Prefabs/Heart");
         for (int i = 0; i < PlayerStatus.PlayerHP; i++) {
             GameObject obj = (GameObject) Instantiate (HeartPrefab);
-            obj.transform.SetParent (Canvas.transform, false);
-            obj.transform.localPosition = new Vector2 (x - 336, 100);
             listObj.Add (obj);
+            listObj[i].transform.SetParent (Canvas.transform, false);
+            RectTransform RectTransform = listObj[i].GetComponent<RectTransform> ();
+            RectTransform.anchorMin = new Vector2 (0, 1);
+            RectTransform.anchorMax = new Vector2 (0, 1);
+            RectTransform.pivot = new Vector2 (0, 1);
+            RectTransform.anchoredPosition = new Vector2 (x, -20);
             x += 30;
         }
     }

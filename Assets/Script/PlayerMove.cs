@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour {
             transform.rotation = Quaternion.Euler (-90, 0, 90);
             isDirectionRight = true;
         }
+        //しゃがむ
         if (Input.GetKey ("down")) {
             //gameObject.transform.localScale = new Vector3 (1, 1, 0.7f);
             PlayerCollider.height = 0.7f;
