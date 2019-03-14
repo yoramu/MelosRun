@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Expanding : MonoBehaviour {
+public class LeftExpanding : MonoBehaviour {
     private bool flag = true;
     private float para = 0.05f;
     private float interval = 0.05f;
@@ -20,7 +20,7 @@ public class Expanding : MonoBehaviour {
             if (tmpTime2 >= interval) {
                 if (transform.localScale.y > 1.1) {
                     transform.localScale += new Vector3 (0f, -1 * expandingSpeed / 2.0f, 0f);
-                    transform.position += new Vector3 (0f, -1 * expandingSpeed / 4.0f, 0f);
+                    transform.position += new Vector3 (expandingSpeed / 4.0f, 0f, 0f);
                 }
                 if (transform.localScale.y < 1.0) {
                     transform.localScale = new Vector3 (1, 1, 1);
@@ -37,7 +37,7 @@ public class Expanding : MonoBehaviour {
                 if (stackFlag > 20) {
                     if (transform.localScale.y < scale) {
                         transform.localScale += new Vector3 (0f, expandingSpeed / 2.0f, 0f);
-                        transform.position += new Vector3 (0f, expandingSpeed / 4.0f, 0f);
+                        transform.position += new Vector3 (-1 * expandingSpeed / 4.0f, 0f, 0f);
                     }
                 } else {
                     transform.localScale += new Vector3 (para, para, para);
