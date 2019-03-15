@@ -23,8 +23,6 @@ public class StageRotationAxis : MonoBehaviour {
             direction = PlayerMove.direction;
 
             if (direction > 0) {
-                Debug.Log (y);
-
                 if (startAngle <= y && y < lastAngle) {
                     PlayerMove.IsMoveFalse ();
                     transform.Rotate (new Vector3 (0, 5, 0));
