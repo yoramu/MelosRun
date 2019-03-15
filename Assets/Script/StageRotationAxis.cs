@@ -38,7 +38,6 @@ public class StageRotationAxis : MonoBehaviour {
                 }
             }
             GameObject.Find ("StageGroup").transform.parent = null;
-
         }
     }
     private void OnTriggerExit (Collider other) {
