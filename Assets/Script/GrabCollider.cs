@@ -7,9 +7,11 @@ public class GrabCollider : MonoBehaviour {
     public GameObject player;
     private Rigidbody playerRigid;
     private FootCollider foot;
+    public PlayerMove PlayerMove;
     void Start () {
         player = transform.root.gameObject;
         playerRigid = player.GetComponent<Rigidbody> ();
+        PlayerMove = player.GetComponent<PlayerMove> ();
         foot = GameObject.Find ("FootCollider").GetComponent<FootCollider> ();
     }
     void Update () {
@@ -19,12 +21,14 @@ public class GrabCollider : MonoBehaviour {
             foot.jumpCount = 0;
         }
     }
-    public void OnTriggerEnter (Collider other) {
+    public void OnTriggerStay (Collider other) {
+        PlayerMove.isMove = false;
         if (other.gameObject.CompareTag ("GrabWall")) {
             isCanGrabWall = true;
         }
     }
     public void OnTriggerExit (Collider other) {
+        PlayerMove.isMove = true;
         if (other.gameObject.CompareTag ("GrabWall")) {
             isCanGrabWall = false;
         }

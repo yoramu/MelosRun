@@ -7,7 +7,7 @@ public class FootCollider : MonoBehaviour {
     [SerializeField] private int MaxJumpCount = 2;
     public bool isJumping = false;
     public bool isExitCollider = false;
-    [SerializeField] private float Upspeed = 5000;
+    [SerializeField] private float Upspeed = 70;
     public GameObject player;
     private Rigidbody playerRigid;
     // Start is called before the first frame update

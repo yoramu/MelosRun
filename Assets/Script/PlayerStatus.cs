@@ -14,7 +14,7 @@ public class PlayerStatus : MonoBehaviour {
     public bool isAttack = false;
     public bool isDeath = false;
     public int PlayerHP = 3;
-    private float InvincibleTime = 3;
+    [SerializeField] private float InvincibleTime = 3;
     private float meshTime = 0;
     private float tmpTime;
     public int score = 0;
