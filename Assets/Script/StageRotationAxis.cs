@@ -7,31 +7,32 @@ public class StageRotationAxis : MonoBehaviour {
     private PlayerMove PlayerMove;
     public GameObject SRA;
     public GameObject StageGroup;
-    private float s;
+    [SerializeField] private float startAngle;
+    [SerializeField] private float lastAngle;
+
     void Start () {
-        SRA = GameObject.Find ("StageRotationAxis");
         StageGroup = GameObject.Find ("StageGroup");
     }
     void Update () { }
 
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.CompareTag ("Player")) {
-            StageGroup.transform.parent = SRA.transform;
+            StageGroup.transform.parent = transform;
             float y = StageGroup.transform.rotation.eulerAngles.y;
             PlayerMove = other.GetComponent<PlayerMove> ();
             direction = PlayerMove.direction;
 
             if (direction > 0) {
-                if (0 <= y && y < 90) {
+                if (startAngle <= y && y < lastAngle) {
                     PlayerMove.IsMoveFalse ();
-                    SRA.transform.Rotate (new Vector3 (0, 1, 0));
+                    transform.Rotate (new Vector3 (0, 1, 0));
                 } else {
                     PlayerMove.IsMoveTrue ();
                 }
             } else if (direction < 0) {
-                if (1 < y && y < 91) {
+                if (startAngle + 1 < y && y < lastAngle + 1) {
                     PlayerMove.IsMoveFalse ();
-                    SRA.transform.Rotate (new Vector3 (0, -1, 0));
+                    transform.Rotate (new Vector3 (0, -1, 0));
                 } else {
                     PlayerMove.IsMoveTrue ();
                 }
