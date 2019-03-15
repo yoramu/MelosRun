@@ -52,9 +52,7 @@ public class RightExpanding : MonoBehaviour {
     private void OnTriggerExit (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = true;
-            if (stackFlag > 41) {
-                stackFlag = 0;
-            }
+            stackFlag = 0;
         }
     }
 }

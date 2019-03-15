@@ -3,14 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StageRotationAxis : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start () {
-        GameObject.Find ("StageGroup").transform.parent = transform;
-    }
+    private float direction;
+    private PlayerMove PlayerMove;
+    public GameObject StageGroup;
+    [SerializeField] private float startAngle;
+    [SerializeField] private float lastAngle;
 
-    // Update is called once per frame
-    void Update () {
-        GameObject.Find ("StageGroup").transform.parent = transform;
-        GameObject.Find ("StageGroup").transform.parent = null;
+    void Start () {
+        StageGroup = GameObject.Find ("StageGroup");
+    }
+    void Update () { }
+
+    private void OnTriggerStay (Collider other) {
+        if (other.gameObject.CompareTag ("Player")) {
+            StageGroup.transform.parent = transform;
+            float y = StageGroup.transform.rotation.eulerAngles.y;
+            PlayerMove = other.GetComponent<PlayerMove> ();
+            direction = PlayerMove.direction;
+
+            if (direction > 0) {
+                if (startAngle <= y && y < lastAngle) {
+                    PlayerMove.IsMoveFalse ();
+                    transform.Rotate (new Vector3 (0, 1, 0));
+                } else {
+                    PlayerMove.IsMoveTrue ();
+                }
+            } else if (direction < 0) {
+                if (startAngle + 1 < y && y < lastAngle + 1) {
+                    PlayerMove.IsMoveFalse ();
+                    transform.Rotate (new Vector3 (0, -1, 0));
+                } else {
+                    PlayerMove.IsMoveTrue ();
+                }
+            }
+            GameObject.Find ("StageGroup").transform.parent = null;
+
+        }
     }
 }
