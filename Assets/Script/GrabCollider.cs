@@ -26,6 +26,7 @@ public class GrabCollider : MonoBehaviour {
             PlayerMove.IsMoveFalse ();
         }
         if (other.gameObject.CompareTag ("GrabWall")) {
+            PlayerMove.IsMoveFalse ();
             isCanGrabWall = true;
         }
     }
