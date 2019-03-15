@@ -34,16 +34,16 @@ public class PlayerMove : MonoBehaviour {
             isDirectionRight = true;
         }
         if (direction < 0) {
-            this.transform.Rotate (new Vector3 (0, 0, adRotate * 5) * Time.deltaTime);
-            tmpRotate += (adRotate * Time.deltaTime * 5);
+            this.transform.Rotate (new Vector3 (0, 0, adRotate) * Time.deltaTime);
+            tmpRotate += (adRotate * Time.deltaTime);
             if (tmpRotate >= maxRotate) {
                 this.transform.rotation = Quaternion.Euler (-90, 0, startRotation + 180);
                 tmpRotate = 90;
             }
         }
         if (direction > 0) {
-            this.transform.Rotate (new Vector3 (0, 0, -adRotate * 5) * Time.deltaTime);
-            tmpRotate -= (adRotate * Time.deltaTime * 5);
+            this.transform.Rotate (new Vector3 (0, 0, -adRotate) * Time.deltaTime);
+            tmpRotate -= (adRotate * Time.deltaTime);
             if (tmpRotate <= maxRotate * -1) {
                 this.transform.rotation = Quaternion.Euler (-90, 0, startRotation);
                 tmpRotate = -90;

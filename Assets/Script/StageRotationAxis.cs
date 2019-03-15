@@ -23,25 +23,27 @@ public class StageRotationAxis : MonoBehaviour {
             direction = PlayerMove.direction;
 
             if (direction > 0) {
-                if (startAngle < y && y < lastAngle) {
+                Debug.Log (y);
+
+                if (startAngle <= y && y < lastAngle) {
                     PlayerMove.IsMoveFalse ();
-                    transform.Rotate (new Vector3 (0, 2, 0));
+                    transform.Rotate (new Vector3 (0, 5, 0));
                 } else {
                     PlayerMove.IsMoveTrue ();
                 }
             } else if (direction < 0) {
                 if (startAngle + 1 < y && y < lastAngle + 1) {
                     PlayerMove.IsMoveFalse ();
-                    transform.Rotate (new Vector3 (0, 2, 0));
+                    transform.Rotate (new Vector3 (0, -5, 0));
                 } else {
                     PlayerMove.IsMoveTrue ();
                 }
             }
             GameObject.Find ("StageGroup").transform.parent = null;
-
         }
     }
     private void OnTriggerExit (Collider other) {
         transform.localScale = new Vector3 (0.1f, 2, 0.1f);
+        PlayerMove.IsMoveTrue ();
     }
 }
