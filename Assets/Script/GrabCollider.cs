@@ -22,13 +22,15 @@ public class GrabCollider : MonoBehaviour {
         }
     }
     public void OnTriggerStay (Collider other) {
-        PlayerMove.isMove = false;
+        if (other.gameObject.CompareTag ("floor")) {
+            PlayerMove.IsMoveFalse ();
+        }
         if (other.gameObject.CompareTag ("GrabWall")) {
             isCanGrabWall = true;
         }
     }
     public void OnTriggerExit (Collider other) {
-        PlayerMove.isMove = true;
+        PlayerMove.IsMoveTrue ();
         if (other.gameObject.CompareTag ("GrabWall")) {
             isCanGrabWall = false;
         }
