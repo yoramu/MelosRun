@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour {
     public bool isDirectionRight = false;
     private bool isSquat = false;
     public bool isMove = true;
-    [SerializeField] public float direction = 0;
+    public float direction = 0;
     [SerializeField] private float speed = 5;
     private Rigidbody PlayerRigid;
     private CapsuleCollider PlayerCollider;
@@ -39,5 +39,11 @@ public class PlayerMove : MonoBehaviour {
             PlayerCollider.height = 1.2f;
             speed = 5;
         }
+    }
+    public void IsMoveTrue () {
+        this.isMove = true;
+    }
+    public void IsMoveFalse () {
+        this.isMove = false;
     }
 }
