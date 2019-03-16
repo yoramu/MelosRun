@@ -11,6 +11,8 @@ public class StageRotationAxis : MonoBehaviour {
 
     void Start () {
         StageGroup = GameObject.Find ("StageGroup");
+        PlayerMove = GameObject.Find ("chr_robot").GetComponent<PlayerMove> ();
+
     }
     void Update () { }
 
@@ -19,7 +21,6 @@ public class StageRotationAxis : MonoBehaviour {
             transform.localScale = new Vector3 (10, 2, 10);
             StageGroup.transform.parent = transform;
             float y = StageGroup.transform.rotation.eulerAngles.y;
-            PlayerMove = other.GetComponent<PlayerMove> ();
             direction = PlayerMove.direction;
 
             if (direction > 0) {
