@@ -12,14 +12,12 @@ public class PlayerStatus : MonoBehaviour {
     public Text scoreText;
     private bool isInvincible = false;
     private bool isAttack = false;
-    public bool isDeath = false;
-    public int PlayerHP = 3;
+    public bool isDeath { get; private set; } = false;
+    public int PlayerHP { get; private set; } = 3;
     [SerializeField] private float InvincibleTime = 3;
     private float meshTime = 0;
     private float tmpTime;
-    public int score = 0;
-
-    // Start is called before the first frame update
+    private int score = 0;
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         Canvas = GameObject.Find ("CanvasGUI");
@@ -27,10 +25,7 @@ public class PlayerStatus : MonoBehaviour {
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
     }
-
-    // Update is called once per frame
     void Update () {
-
         //無敵状態フラグ
         if (isInvincible) {
             tmpTime -= Time.deltaTime;
@@ -55,7 +50,7 @@ public class PlayerStatus : MonoBehaviour {
         //スコア
         scoreText.text = "Score:" + score;
     }
-    public void OnCollisionStay (Collision collision) {
+    private void OnCollisionStay (Collision collision) {
         if (collision.gameObject.CompareTag ("enemy")) {
             if (!isInvincible && !isAttack) {
                 PlayerHP -= 1;
@@ -72,5 +67,8 @@ public class PlayerStatus : MonoBehaviour {
     }
     public void IsAttackFalse () {
         this.isAttack = false;
+    }
+    public void getScore (int score) {
+        this.score += score;
     }
 }

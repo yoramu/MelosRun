@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
-    public GameObject Player;
-    public bool isDirectionRight = false;
+    private bool isDirectionRight = false;
     private bool isSquat = false;
     private bool isMove = true;
     private bool isRotate = true;
-    public float direction = 0;
+    public float direction { get; private set; } = 0;
     [SerializeField] private float speed = 5;
     private Rigidbody PlayerRigid;
     private CapsuleCollider PlayerCollider;
     [SerializeField] private float adRotate = 500;
-    float maxRotate = 90; //回転角の最大値//
-    float tmpRotate = -90; //現在の回転角//
-    float startRotation; //最初のグローバルY座標//
+    private float maxRotate = 90; //回転角の最大値//
+    private float tmpRotate = -90; //現在の回転角//
+    private float startRotation; //最初のグローバルY座標//
     void Start () {
-        PlayerRigid = Player.GetComponent<Rigidbody> ();
-        PlayerCollider = Player.GetComponent<CapsuleCollider> ();
+        PlayerRigid = GetComponent<Rigidbody> ();
+        PlayerCollider = GetComponent<CapsuleCollider> ();
         startRotation = transform.rotation.eulerAngles.y;
     }
     void Update () {

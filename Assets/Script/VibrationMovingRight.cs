@@ -10,8 +10,8 @@ public class VibrationMovingRight : MonoBehaviour {
     private float tmpTime2 = 0f;
     private int stackFlag = 0;
     private bool smallFlag = true;
-    public float movingSpeed = 0.1f;
-    public float scale = 20;
+    [SerializeField] private float movingSpeed = 0.1f;
+    [SerializeField] private float scale = 20;
     private float x, y, z;
     private GameObject Player;
     void Start () {
@@ -22,7 +22,6 @@ public class VibrationMovingRight : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-
         if (smallFlag) {
             tmpTime2 += Time.deltaTime;
             if (tmpTime2 >= interval) {
@@ -37,7 +36,6 @@ public class VibrationMovingRight : MonoBehaviour {
             }
         }
     }
-
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
@@ -57,7 +55,6 @@ public class VibrationMovingRight : MonoBehaviour {
             }
         }
     }
-
     private void OnTriggerExit (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = true;

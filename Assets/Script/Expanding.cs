@@ -10,8 +10,8 @@ public class Expanding : MonoBehaviour {
     private float tmpTime2 = 0f;
     private int stackFlag = 0;
     private bool smallFlag = true;
-    public float expandingSpeed = 1.0f;
-    public float scale = 20;
+    private float expandingSpeed = 1.0f;
+    private float scale = 20;
     void Start () { }
     // Update is called once per frame
     void Update () {

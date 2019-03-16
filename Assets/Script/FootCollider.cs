@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FootCollider : MonoBehaviour {
-    public int jumpCount = 0;
+    private int jumpCount = 0;
     [SerializeField] private int MaxJumpCount = 2;
-    public bool isJumping = false;
-    public bool isExitCollider = false;
+    private bool isJumping = false;
+    private bool isExitCollider = false;
     [SerializeField] private float Upspeed = 70;
-    public GameObject player;
+    private GameObject player;
     private Rigidbody playerRigid;
     // Start is called before the first frame update
     void Start () {
@@ -26,7 +26,7 @@ public class FootCollider : MonoBehaviour {
             }
         }
     }
-    public void OnTriggerStay (Collider other) {
+    private void OnTriggerStay (Collider other) {
         if (other.gameObject.CompareTag ("floor") && isExitCollider) {
             isExitCollider = false;
             isJumping = false;
@@ -35,12 +35,15 @@ public class FootCollider : MonoBehaviour {
             }
         }
     }
-    public void OnTriggerExit (Collider other) {
+    private void OnTriggerExit (Collider other) {
         if (other.gameObject.CompareTag ("floor") && !isExitCollider) {
             isExitCollider = true;
             if (isJumping) {
                 jumpCount++;
             }
         }
+    }
+    public void JumpCountReset () {
+        jumpCount = 0;
     }
 }
