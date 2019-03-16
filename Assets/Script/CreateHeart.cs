@@ -21,7 +21,7 @@ public class CreateHeart : MonoBehaviour {
             RectTransform.anchorMin = new Vector2 (0, 1);
             RectTransform.anchorMax = new Vector2 (0, 1);
             RectTransform.pivot = new Vector2 (0, 1);
-            RectTransform.anchoredPosition = new Vector2 (x, -20);
+            RectTransform.anchoredPosition = new Vector2 (x, -10);
             x += 30;
         }
     }
