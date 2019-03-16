@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
-    public GameObject Player;
-    public bool isDirectionRight = false;
+    private bool isDirectionRight = false;
     private bool isSquat = false;
-    public bool isMove = true;
-    public float direction = 0;
+    private bool isMove = true;
+    private bool isRotate = true;
+    public float direction { get; private set; } = 0;
     [SerializeField] private float speed = 5;
     private Rigidbody PlayerRigid;
     private CapsuleCollider PlayerCollider;
-    public float adRotate = 500;
-    float maxRotate = 90; //回転角の最大値//
-    float tmpRotate = -90; //現在の回転角//
-    float startRotation; //最初のグローバルY座標//
+    [SerializeField] private float adRotate = 500;
+    private float maxRotate = 90; //回転角の最大値//
+    private float tmpRotate = -90; //現在の回転角//
+    private float startRotation; //最初のグローバルY座標//
     void Start () {
-        PlayerRigid = Player.GetComponent<Rigidbody> ();
-        PlayerCollider = Player.GetComponent<CapsuleCollider> ();
+        PlayerRigid = GetComponent<Rigidbody> ();
+        PlayerCollider = GetComponent<CapsuleCollider> ();
         startRotation = transform.rotation.eulerAngles.y;
     }
     void Update () {
@@ -33,23 +33,24 @@ public class PlayerMove : MonoBehaviour {
         if (direction < 0 && !isDirectionRight) {
             isDirectionRight = true;
         }
-        if (direction < 0) {
-            this.transform.Rotate (new Vector3 (0, 0, adRotate) * Time.deltaTime);
-            tmpRotate += (adRotate * Time.deltaTime);
-            if (tmpRotate >= maxRotate) {
-                this.transform.rotation = Quaternion.Euler (-90, 0, startRotation + 180);
-                tmpRotate = 90;
+        if (isRotate) {
+            if (direction < 0) {
+                this.transform.Rotate (new Vector3 (0, 0, adRotate) * Time.deltaTime);
+                tmpRotate += (adRotate * Time.deltaTime);
+                if (tmpRotate >= maxRotate) {
+                    this.transform.rotation = Quaternion.Euler (-90, 0, startRotation + 180);
+                    tmpRotate = 90;
+                }
+            }
+            if (direction > 0) {
+                this.transform.Rotate (new Vector3 (0, 0, -adRotate) * Time.deltaTime);
+                tmpRotate -= (adRotate * Time.deltaTime);
+                if (tmpRotate <= maxRotate * -1) {
+                    this.transform.rotation = Quaternion.Euler (-90, 0, startRotation);
+                    tmpRotate = -90;
+                }
             }
         }
-        if (direction > 0) {
-            this.transform.Rotate (new Vector3 (0, 0, -adRotate) * Time.deltaTime);
-            tmpRotate -= (adRotate * Time.deltaTime);
-            if (tmpRotate <= maxRotate * -1) {
-                this.transform.rotation = Quaternion.Euler (-90, 0, startRotation);
-                tmpRotate = -90;
-            }
-        }
-
         //しゃがむ
         if (Input.GetKey ("down")) {
             //gameObject.transform.localScale = new Vector3 (1, 1, 0.7f);
@@ -66,5 +67,14 @@ public class PlayerMove : MonoBehaviour {
     }
     public void IsMoveFalse () {
         this.isMove = false;
+    }
+    public void IsRotateTrue () {
+        this.isRotate = true;
+    }
+    public void IsRotateFalse () {
+        this.isRotate = false;
+    }
+    public void IsDirectionRightFalse () {
+        this.isDirectionRight = false;
     }
 }

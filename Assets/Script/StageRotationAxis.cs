@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageRotationAxis : MonoBehaviour {
     private float direction;
     private PlayerMove PlayerMove;
-    public GameObject StageGroup;
+    private GameObject StageGroup;
     [SerializeField] private float startAngle;
     [SerializeField] private float lastAngle;
 

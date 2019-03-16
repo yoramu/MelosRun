@@ -25,9 +25,9 @@ public class RotateBoost : MonoBehaviour {
                     isStoppingRotate = false;
                     z = 30f;
                     player.transform.rotation = Quaternion.Euler (-90, 0, 270);
-                    player.GetComponent<PlayerMove> ().isDirectionRight = false;
-                    player.GetComponent<PlayerStatus> ().isInvincible = false;
-                    player.GetComponent<PlayerStatus> ().isAttack = false;
+                    player.GetComponent<PlayerMove> ().IsDirectionRightFalse ();
+                    player.GetComponent<PlayerStatus> ().IsAttackFalse ();
+                    player.GetComponent<PlayerMove> ().IsRotateTrue ();
                 }
             } else {
                 tempTime1 += Time.deltaTime;
@@ -43,8 +43,9 @@ public class RotateBoost : MonoBehaviour {
     private void OnTriggerStay (Collider other) {
         player = other.transform.root.gameObject;
         if (other.gameObject.name == "FootCollider") {
-            player.GetComponent<PlayerStatus> ().isAttack = true;
+            player.GetComponent<PlayerStatus> ().IsAttackTrue ();
             isStoppingRotate = false;
+            player.GetComponent<PlayerMove> ().IsRotateFalse ();
             z = 30f;
             player.transform.Rotate (new Vector3 (0f, 0f, 30f));
         }
