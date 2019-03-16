@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour {
     private MeshRenderer mesh;
-    public GameObject Canvas;
-    public GameObject target;
-    public CreateHeart CreateHeart;
+    private GameObject Canvas;
+    private GameObject target;
+    private CreateHeart CreateHeart;
     public Text scoreText;
-    public bool isInvincible = false;
-    public bool isAttack = false;
+    private bool isInvincible = false;
+    private bool isAttack = false;
     public bool isDeath = false;
     public int PlayerHP = 3;
     [SerializeField] private float InvincibleTime = 3;
@@ -66,5 +66,11 @@ public class PlayerStatus : MonoBehaviour {
                 Destroy (collision.gameObject);
             }
         }
+    }
+    public void IsAttackTrue () {
+        this.isAttack = true;
+    }
+    public void IsAttackFalse () {
+        this.isAttack = false;
     }
 }
