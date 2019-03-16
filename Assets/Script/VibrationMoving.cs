@@ -13,6 +13,7 @@ public class VibrationMoving : MonoBehaviour {
     [SerializeField] private float movingSpeed = 0.1f;
     [SerializeField] private float scale = 20;
     private float x, y, z;
+    [SerializeField] private float next_x, next_y, next_z;
     private GameObject Player;
     void Start () {
         x = transform.position.x;
@@ -20,15 +21,13 @@ public class VibrationMoving : MonoBehaviour {
         z = transform.position.z;
         Player = GameObject.Find ("chr_robot");
     }
-    // Update is called once per frame
     void Update () {
-
         if (smallFlag) {
             tmpTime2 += Time.deltaTime;
             if (tmpTime2 >= interval) {
                 if (transform.position.y > y + 0.1) {
-                    Player.transform.position += new Vector3 (0f, -1 * movingSpeed, 0f);
-                    transform.position += new Vector3 (0f, -1 * movingSpeed, 0f);
+                    Player.transform.position += new Vector3 (0f, -1 * movingSpeed * Time.deltaTime, 0f);
+                    transform.position += new Vector3 (0f, -1 * movingSpeed * Time.deltaTime, 0f);
                 }
             }
             if (transform.position.y < y) {
@@ -45,8 +44,8 @@ public class VibrationMoving : MonoBehaviour {
             if (tmpTime1 >= interval) {
                 if (stackFlag > 20) {
                     if (transform.localScale.y < scale) {
-                        Player.transform.position += new Vector3 (0f, movingSpeed, 0f);
-                        transform.position += new Vector3 (0f, movingSpeed, 0f);
+                        Player.transform.position += new Vector3 (0f, movingSpeed * Time.deltaTime, 0f);
+                        transform.position += new Vector3 (0f, movingSpeed * Time.deltaTime, 0f);
                     }
                 } else {
                     transform.localScale += new Vector3 (para, para, para);

@@ -10,7 +10,7 @@ public class VibrationMovingRight : MonoBehaviour {
     private float tmpTime2 = 0f;
     private int stackFlag = 0;
     private bool smallFlag = true;
-    [SerializeField] private float movingSpeed = 0.1f;
+    [SerializeField] private float movingSpeed = 250f;
     [SerializeField] private float scale = 20;
     private float x, y, z;
     private GameObject Player;
@@ -26,8 +26,7 @@ public class VibrationMovingRight : MonoBehaviour {
             tmpTime2 += Time.deltaTime;
             if (tmpTime2 >= interval) {
                 if (transform.position.x > x + 0.1) {
-                    Player.transform.position += new Vector3 (-1 * movingSpeed, 0f, 0f);
-                    transform.position += new Vector3 (-1 * movingSpeed, 0f, 0f);
+                    transform.position += new Vector3 (-1 * Time.deltaTime * 10, 0f, 0f);
                 }
             }
             if (transform.position.x < x) {
@@ -43,8 +42,8 @@ public class VibrationMovingRight : MonoBehaviour {
             if (tmpTime1 >= interval) {
                 if (stackFlag > 20) {
                     if (transform.localScale.x < scale) {
-                        Player.transform.position += new Vector3 (movingSpeed, 0f, 0f);
-                        transform.position += new Vector3 (movingSpeed, 0f, 0f);
+                        transform.position += new Vector3 (Time.deltaTime * 20, 0f, 0f);
+                        Player.transform.position += new Vector3 (Time.deltaTime * 20, 0f, 0f);
                     }
                 } else {
                     transform.localScale += new Vector3 (para, para, para);
