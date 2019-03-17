@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DecisionGameOver : MonoBehaviour {
-    public GameObject Player;
-    public GameObject Canvas;
-    public GameObject GameOverText;
-    public GameObject PleasePush;
-    public PlayerStatus PlayerStatus;
+    private GameObject Player;
+    private GameObject Canvas;
+    private GameObject GameOverText;
+    private GameObject PleasePush;
+    private PlayerStatus PlayerStatus;
     private double tmpTime = 0;
     void Start () {
         GameOverText = GameObject.Find ("GameOverText");

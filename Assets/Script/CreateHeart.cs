@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreateHeart : MonoBehaviour {
-    public GameObject Canvas;
-    public PlayerStatus PlayerStatus;
+    private GameObject Canvas;
+    private PlayerStatus PlayerStatus;
     private float x = 0;
-    public List<GameObject> listObj = new List<GameObject> ();
-    // Start is called before the first frame update
+    public List<GameObject> listObj { get; private set; } = new List<GameObject> ();
     void Start () {
         x = 40;
         Canvas = GameObject.Find ("CanvasGUI");
@@ -24,10 +23,5 @@ public class CreateHeart : MonoBehaviour {
             RectTransform.anchoredPosition = new Vector2 (x, -10);
             x += 30;
         }
-    }
-
-    // Update is called once per frame
-    void Update () {
-
     }
 }

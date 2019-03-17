@@ -6,20 +6,18 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour {
     private MeshRenderer mesh;
-    public GameObject Canvas;
-    public GameObject target;
-    public CreateHeart CreateHeart;
+    private GameObject Canvas;
+    private GameObject target;
+    private CreateHeart CreateHeart;
     public Text scoreText;
-    public bool isInvincible = false;
-    public bool isAttack = false;
-    public bool isDeath = false;
-    public int PlayerHP = 3;
+    private bool isInvincible = false;
+    private bool isAttack = false;
+    public bool isDeath { get; private set; } = false;
+    public int PlayerHP { get; private set; } = 3;
     [SerializeField] private float InvincibleTime = 3;
     private float meshTime = 0;
     private float tmpTime;
-    public int score = 0;
-
-    // Start is called before the first frame update
+    private int score = 0;
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         Canvas = GameObject.Find ("CanvasGUI");
@@ -27,10 +25,7 @@ public class PlayerStatus : MonoBehaviour {
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
     }
-
-    // Update is called once per frame
     void Update () {
-
         //無敵状態フラグ
         if (isInvincible) {
             tmpTime -= Time.deltaTime;
@@ -55,7 +50,7 @@ public class PlayerStatus : MonoBehaviour {
         //スコア
         scoreText.text = "Score:" + score;
     }
-    public void OnCollisionStay (Collision collision) {
+    private void OnCollisionStay (Collision collision) {
         if (collision.gameObject.CompareTag ("enemy")) {
             if (!isInvincible && !isAttack) {
                 PlayerHP -= 1;
@@ -66,5 +61,14 @@ public class PlayerStatus : MonoBehaviour {
                 Destroy (collision.gameObject);
             }
         }
+    }
+    public void IsAttackTrue () {
+        this.isAttack = true;
+    }
+    public void IsAttackFalse () {
+        this.isAttack = false;
+    }
+    public void getScore (int score) {
+        this.score += score;
     }
 }
