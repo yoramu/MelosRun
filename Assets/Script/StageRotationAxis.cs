@@ -31,6 +31,10 @@ public class StageRotationAxis : MonoBehaviour {
                 } else {
                     transform.rotation = Quaternion.Euler (0, lastAngle, 0);
                     PlayerMove.IsMoveTrue ();
+                    StageGroup.transform.parent = null;
+                    transform.parent = StageGroup.transform;
+                    transform.localScale = new Vector3 (1f,
+                        2, 1f);
                 }
             } else if (direction < 0) {
                 if (startAngle + 1 < y && y <= lastAngle + 1) {
@@ -39,15 +43,12 @@ public class StageRotationAxis : MonoBehaviour {
                 } else {
                     transform.rotation = Quaternion.Euler (0, startAngle, 0);
                     PlayerMove.IsMoveTrue ();
+                    StageGroup.transform.parent = null;
+                    transform.parent = StageGroup.transform;
+                    transform.localScale = new Vector3 (1f, 2, 1f);
                 }
             }
-            StageGroup.transform.parent = null;
-            transform.parent = StageGroup.transform;
 
         }
-    }
-    private void OnTriggerExit (Collider other) {
-        transform.localScale = new Vector3 (0.1f, 2, 0.1f);
-        PlayerMove.IsMoveTrue ();
     }
 }

@@ -23,7 +23,6 @@ public class StageRotationPivotAxis : MonoBehaviour {
             StageGroup.transform.parent = transform;
             float y = StageGroup.transform.rotation.eulerAngles.y;
             direction = PlayerMove.direction;
-
             if (direction > 0) {
                 if (startAngle <= y && y < lastAngle) {
                     PlayerMove.IsMoveFalse ();
