@@ -6,6 +6,7 @@ public class StageRotationAxis : MonoBehaviour {
     private float direction;
     private PlayerMove PlayerMove;
     private GameObject StageGroup;
+    [SerializeField] private bool isEnterFromRight = false;
     [SerializeField] private float startAngle;
     [SerializeField] private float lastAngle;
 
@@ -24,7 +25,7 @@ public class StageRotationAxis : MonoBehaviour {
             float y = StageGroup.transform.rotation.eulerAngles.y;
             direction = PlayerMove.direction;
 
-            if (direction > 0) {
+            if ((direction > 0 && !isEnterFromRight) || (direction < 0 && isEnterFromRight)) {
                 if (startAngle <= y && y < lastAngle) {
                     PlayerMove.IsMoveFalse ();
                     transform.Rotate (new Vector3 (0, 5, 0));
@@ -33,10 +34,9 @@ public class StageRotationAxis : MonoBehaviour {
                     PlayerMove.IsMoveTrue ();
                     StageGroup.transform.parent = null;
                     transform.parent = StageGroup.transform;
-                    transform.localScale = new Vector3 (1f,
-                        2, 1f);
+                    transform.localScale = new Vector3 (1f, 2f, 1f);
                 }
-            } else if (direction < 0) {
+            } else if ((direction < 0 && !isEnterFromRight) || (direction > 0 && isEnterFromRight)) {
                 if (startAngle + 1 < y && y <= lastAngle + 1) {
                     PlayerMove.IsMoveFalse ();
                     transform.Rotate (new Vector3 (0, -5, 0));
@@ -48,7 +48,6 @@ public class StageRotationAxis : MonoBehaviour {
                     transform.localScale = new Vector3 (1f, 2, 1f);
                 }
             }
-
         }
     }
 }
