@@ -13,7 +13,6 @@ public class StageRotationAxis : MonoBehaviour {
     void Start () {
         StageGroup = GameObject.Find ("StageGroup");
         PlayerMove = GameObject.Find ("chr_robot").GetComponent<PlayerMove> ();
-
     }
     void Update () { }
 

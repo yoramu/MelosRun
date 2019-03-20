@@ -9,6 +9,9 @@ TagManager:
   - enemy
   - Nonfloor
   - floor
+  - FxTemporaire
+  - Spike
+  - trap
   layers:
   - Default
   - TransparentFX

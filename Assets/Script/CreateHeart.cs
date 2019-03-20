@@ -11,7 +11,7 @@ public class CreateHeart : MonoBehaviour {
         x = 40;
         Canvas = GameObject.Find ("CanvasGUI");
         PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
-        GameObject HeartPrefab = (GameObject) Resources.Load ("Prefabs/Heart");
+        GameObject HeartPrefab = (GameObject) Resources.Load ("Prefabs/Object/Heart");
         for (int i = 0; i < PlayerStatus.PlayerHP; i++) {
             GameObject obj = (GameObject) Instantiate (HeartPrefab);
             listObj.Add (obj);

@@ -12,6 +12,7 @@ public class MoveFloar : MonoBehaviour {
     private bool smallFlag = true;
     private GameObject Player;
     private Rigidbody rb;
+    [SerializeField] private float x = 0, y = 0, z = 0, moveTime = 0;
     void Start () {
         rb = GetComponent<Rigidbody> ();
         Player = GameObject.Find ("chr_robot");
@@ -20,7 +21,7 @@ public class MoveFloar : MonoBehaviour {
         if (flag && flag2) {
             // rb.velocity = new Vector3 (1f, 0, 0);
             Player.transform.parent = transform;
-            iTween.MoveBy (this.gameObject, iTween.Hash ("x", 3.7333f - 0.9603f, "y", 0.58035f + 2.1164f, "z", -3.1429 + 3.1429f, "time", 5));
+            iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
             flag2 = false;
             // Player.transform.parent = null;
         }
