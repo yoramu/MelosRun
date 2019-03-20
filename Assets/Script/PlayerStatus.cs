@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerStatus : MonoBehaviour {
     private MeshRenderer mesh;
     private GameObject Canvas;
-    private GameObject target;
+    [SerializeField] private GameObject target;
     private CreateHeart CreateHeart;
     public Text scoreText;
     private bool isInvincible = false;
@@ -59,6 +59,15 @@ public class PlayerStatus : MonoBehaviour {
             }
             if (isAttack) {
                 Destroy (collision.gameObject);
+            }
+        }
+    }
+    public void OnTriggerStay (Collider other) {
+        if (other.gameObject.CompareTag ("trap")) {
+            if (!isInvincible) {
+                PlayerHP -= 1;
+                isInvincible = true;
+                Destroy (CreateHeart.listObj[PlayerHP]);
             }
         }
     }
