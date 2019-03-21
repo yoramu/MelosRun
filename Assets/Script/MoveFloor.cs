@@ -31,6 +31,7 @@ public class MoveFloor : MonoBehaviour {
             iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
             transform.localScale = localScale;
             flag2 = false;
+            para = 0.05f;
             x *= -1;
             y *= -1;
             z *= -1;
@@ -56,8 +57,10 @@ public class MoveFloor : MonoBehaviour {
     }
     private void OnTriggerExit (Collider other) {
         Player.transform.parent = null;
+        transform.localScale = localScale;
         flag = false;
         stackFlag = 0;
         flag2 = true;
+        para = 0.05f;
     }
 }
