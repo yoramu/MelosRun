@@ -29,7 +29,7 @@ public class DecisionGameOver : MonoBehaviour {
                 PleasePush.SetActive (false);
             }
             if (Input.GetKeyDown (KeyCode.Return)) {
-                SceneManager.LoadScene ("MainGameScene");
+                SceneManager.LoadScene ("StageScene");
             }
         }
     }

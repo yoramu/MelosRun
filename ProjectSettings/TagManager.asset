@@ -12,6 +12,9 @@ TagManager:
   - FxTemporaire
   - Spike
   - trap
+  - Red
+  - Green
+  - Blue
   layers:
   - Default
   - TransparentFX
