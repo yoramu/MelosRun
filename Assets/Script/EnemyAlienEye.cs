@@ -22,7 +22,7 @@ public class EnemyAlienEye : MonoBehaviour {
         float y = transform.rotation.eulerAngles.y;
         direction = -0.1f;
         if (isMove) {
-            PlayerRigid.position += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
+            PlayerRigid.transform.localPosition += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
         }
         /**
         //キャラの向き
