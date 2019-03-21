@@ -9,7 +9,6 @@ public class iTweensTest : MonoBehaviour {
     private float tmpTime1 = 0f;
     private float tmpTime2 = 0f;
     private int stackFlag = 0;
-    private bool smallFlag = true;
     [SerializeField] private float movingSpeed = 250f;
     [SerializeField] private float scale = 20;
     private float x, y, z;
@@ -20,14 +19,15 @@ public class iTweensTest : MonoBehaviour {
     void Update () {
 
         if (flag) {
-            Player.transform.parent = transform;
-            iTween.MoveBy (this.gameObject, iTween.Hash ("x", 10f, "time", 15));
+            // Player.transform.parent = transform;
+            iTween.RotateBy (gameObject, iTween.Hash ("x", 0.25f, "time", 3));
+
+            // iTween.MoveBy (this.gameObject, iTween.Hash ("x", 30f, "time", 60));
         }
 
     }
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.name == "FootCollider") {
-            smallFlag = false;
             tmpTime1 += Time.deltaTime;
             if (tmpTime1 >= interval) {
                 if (stackFlag > 20) {
