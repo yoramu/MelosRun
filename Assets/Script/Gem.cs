@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour {
     private PlayerStatus PlayerStatus;
+    private ShowGem ShowGem;
     private bool isMoveUp = false;
     [SerializeField] private float upTime;
     private float tmpTime;
     void Start () {
+        ShowGem = GameObject.Find ("CanvasGUI").GetComponent<ShowGem> ();
         PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
         upTime = 1;
         tmpTime = upTime;
@@ -30,6 +32,13 @@ public class Gem : MonoBehaviour {
         if (other.gameObject.CompareTag ("Player") && !isMoveUp) {
             PlayerStatus.getScore (1000);
             isMoveUp = true;
+            Debug.Log (transform.tag);
+            if (transform.tag == "Red")
+                ShowGem.uGUI_GemRed.SetActive (true);
+            if (transform.tag == "Green")
+                ShowGem.uGUI_GemGreen.SetActive (true);
+            if (transform.tag == "Blue")
+                ShowGem.uGUI_GemBlue.SetActive (true);
         }
     }
 }
