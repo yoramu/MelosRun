@@ -14,23 +14,29 @@ public class MoveFloor : MonoBehaviour {
     private Rigidbody rb;
     [SerializeField] private float x = 0, y = 0, z = 0, moveTime = 0;
     private Vector3 localScale;
+    private Vector3 Lposition;
     void Start () {
         rb = GetComponent<Rigidbody> ();
         Player = GameObject.Find ("chr_robot");
         localScale = transform.localScale;
+        Lposition = transform.localPosition;
+        x -= Lposition.x;
+        y -= Lposition.y;
+        z -= Lposition.z;
     }
     void Update () {
+        Debug.Log (Lposition);
         if (flag && flag2) {
             Player.transform.parent = transform;
             iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
             transform.localScale = localScale;
             flag2 = false;
+            para = 0.05f;
             x *= -1;
             y *= -1;
             z *= -1;
         }
     }
-
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
@@ -51,8 +57,10 @@ public class MoveFloor : MonoBehaviour {
     }
     private void OnTriggerExit (Collider other) {
         Player.transform.parent = null;
+        transform.localScale = localScale;
         flag = false;
         stackFlag = 0;
         flag2 = true;
+        para = 0.05f;
     }
 }
