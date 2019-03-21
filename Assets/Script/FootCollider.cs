@@ -10,10 +10,12 @@ public class FootCollider : MonoBehaviour {
     [SerializeField] private float Upspeed = 70;
     private GameObject player;
     private Rigidbody playerRigid;
-    // Start is called before the first frame update
+    [SerializeField] private AudioClip jumpSound;
+    AudioSource audioSource;
     void Start () {
         player = transform.root.gameObject;
         playerRigid = player.GetComponent<Rigidbody> ();
+        audioSource = GetComponent<AudioSource> ();
     }
     void Update () {
         //ジャンプフラグ
@@ -24,6 +26,7 @@ public class FootCollider : MonoBehaviour {
             if (isExitCollider) {
                 jumpCount++;
             }
+            audioSource.PlayOneShot (jumpSound);
         }
     }
     private void OnTriggerStay (Collider other) {
