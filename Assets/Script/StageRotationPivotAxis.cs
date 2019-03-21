@@ -32,7 +32,7 @@ public class StageRotationPivotAxis : MonoBehaviour {
                     PlayerMove.IsMoveTrue ();
                     StageGroup.transform.parent = null;
                     transform.parent = StageGroup.transform.parent;
-                    transform.localScale = new Vector3 (20, 3, 20);
+                    transform.localScale = new Vector3 (35, 3, 35);
                 }
             } else if (direction < 0) {
                 if (startAngle + 1 < y && y <= lastAngle + 1) {
@@ -43,7 +43,7 @@ public class StageRotationPivotAxis : MonoBehaviour {
                     PlayerMove.IsMoveTrue ();
                     StageGroup.transform.parent = null;
                     transform.parent = StageGroup.transform;
-                    transform.localScale = new Vector3 (20, 3, 20);
+                    transform.localScale = new Vector3 (35, 3, 35);
                 }
             }
 
