@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LimitTime : MonoBehaviour {
     public Text limitTimeText;
-    public float limitTime { set; get; } = 100;
+    public float limitTime { set; get; } = 200;
     // Start is called before the first frame update
     void Start () {
         limitTimeText.text = "Time:" + limitTime;
