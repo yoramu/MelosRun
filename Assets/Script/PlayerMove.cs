@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
     private bool isDirectionRight = false;
     private bool isSquat = false;
-    private bool isMove = true;
+    public bool isMove { get; private set; } = true;
     private bool isRotate = true;
     public float direction { get; private set; } = 0;
     [SerializeField] private float speed = 5;
@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour {
     }
     void Update () {
         float y = transform.rotation.eulerAngles.y;
+        //キーを入力するとプレイヤーが左右に移動する
         direction = Input.GetAxis ("Horizontal");
         if (isMove) {
             PlayerRigid.position += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
@@ -33,6 +34,7 @@ public class PlayerMove : MonoBehaviour {
         if (direction < 0 && !isDirectionRight) {
             isDirectionRight = true;
         }
+        //プレイヤーが移動する方向へ半周回る
         if (isRotate) {
             if (direction < 0) {
                 this.transform.Rotate (new Vector3 (0, 0, adRotate) * Time.deltaTime);

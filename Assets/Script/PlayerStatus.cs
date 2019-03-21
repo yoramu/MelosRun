@@ -47,9 +47,14 @@ public class PlayerStatus : MonoBehaviour {
             isDeath = true;
             Instantiate (target, transform.localPosition, transform.rotation);
         }
+        //穴に落ちたらHPが0になる
+        if (transform.localPosition.y < -30) {
+            PlayerHP = 0;
+        }
         //スコア
         scoreText.text = "Score:" + score;
     }
+    //敵にあたった時の当たり判定とダメージ
     private void OnCollisionStay (Collision collision) {
         if (collision.gameObject.CompareTag ("enemy")) {
             if (!isInvincible && !isAttack) {
@@ -62,6 +67,7 @@ public class PlayerStatus : MonoBehaviour {
             }
         }
     }
+    //トラップにあたった時の当たり判定とダメージ
     public void OnTriggerStay (Collider other) {
         if (other.gameObject.CompareTag ("trap")) {
             if (!isInvincible) {
@@ -71,6 +77,7 @@ public class PlayerStatus : MonoBehaviour {
             }
         }
     }
+    //他クラスから呼ばれるための関数。カプセル化。
     public void IsAttackTrue () {
         this.isAttack = true;
     }
