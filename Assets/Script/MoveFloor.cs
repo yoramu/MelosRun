@@ -14,15 +14,18 @@ public class MoveFloor : MonoBehaviour {
     private Rigidbody rb;
     [SerializeField] private float x = 0, y = 0, z = 0, moveTime = 0;
     private Vector3 localScale;
+    private Vector3 Lposition;
     void Start () {
         rb = GetComponent<Rigidbody> ();
         Player = GameObject.Find ("chr_robot");
         localScale = transform.localScale;
+        Lposition = transform.localPosition;
     }
     void Update () {
+        Debug.Log (Lposition);
         if (flag && flag2) {
             Player.transform.parent = transform;
-            iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
+            iTween.MoveBy (this.gameObject, iTween.Hash ("x", x - Lposition.x, "y", y - Lposition.y, "z", z - Lposition.z, "time", moveTime));
             transform.localScale = localScale;
             flag2 = false;
             x *= -1;
