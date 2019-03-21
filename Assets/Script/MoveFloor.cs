@@ -19,10 +19,10 @@ public class MoveFloor : MonoBehaviour {
         rb = GetComponent<Rigidbody> ();
         Player = GameObject.Find ("chr_robot");
         localScale = transform.localScale;
-        Lposition = transform.localPosition;
-        x -= Lposition.x;
-        y -= Lposition.y;
-        z -= Lposition.z;
+        // Lposition = transform.localPosition;
+        // x -= Lposition.x;
+        // y -= Lposition.y;
+        // z -= Lposition.z;
     }
     void Update () {
         Debug.Log (Lposition);
