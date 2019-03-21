@@ -18,12 +18,20 @@ public class PlayerStatus : MonoBehaviour {
     private float meshTime = 0;
     private float tmpTime;
     private int score = 0;
+    [SerializeField] private AudioClip damageSound;
+    private AudioSource audioSource;
+    private Renderer renderer;
     void Start () {
         mesh = GetComponent<MeshRenderer> ();
         Canvas = GameObject.Find ("CanvasGUI");
         CreateHeart = Canvas.GetComponent<CreateHeart> ();
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
+        audioSource = GetComponent<AudioSource> ();
+        // GetComponent<Image> ().color = new Color (0f, 1.0f, 1.0f, 0.25f);
+        Color color = renderer.material.color;
+        color.a = 0.5f;
+        renderer.material.color = color;
     }
     void Update () {
         //無敵状態フラグ
@@ -60,6 +68,7 @@ public class PlayerStatus : MonoBehaviour {
             if (!isInvincible && !isAttack) {
                 PlayerHP -= 1;
                 isInvincible = true;
+                audioSource.PlayOneShot (damageSound);
                 Destroy (CreateHeart.listObj[PlayerHP]);
             }
             if (isAttack) {
@@ -73,6 +82,7 @@ public class PlayerStatus : MonoBehaviour {
             if (!isInvincible) {
                 PlayerHP -= 1;
                 isInvincible = true;
+                audioSource.PlayOneShot (damageSound);
                 Destroy (CreateHeart.listObj[PlayerHP]);
             }
         }

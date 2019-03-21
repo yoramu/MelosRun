@@ -11,7 +11,7 @@ public class FootCollider : MonoBehaviour {
     private GameObject player;
     private Rigidbody playerRigid;
     [SerializeField] private AudioClip jumpSound;
-    AudioSource audioSource;
+    private AudioSource audioSource;
     void Start () {
         player = transform.root.gameObject;
         playerRigid = player.GetComponent<Rigidbody> ();

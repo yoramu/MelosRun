@@ -8,16 +8,24 @@ public class Gem : MonoBehaviour {
     private bool isMoveUp = false;
     [SerializeField] private float upTime;
     private float tmpTime;
+    [SerializeField] private AudioClip gemSound;
+    private AudioSource audioSource;
+    private bool flag = true;
     void Start () {
         ShowGem = GameObject.Find ("CanvasGUI").GetComponent<ShowGem> ();
         PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
         upTime = 1;
         tmpTime = upTime;
+        audioSource = GetComponent<AudioSource> ();
     }
     void Update () {
         transform.Rotate (new Vector3 (0, 2, 0));
         if (isMoveUp) {
             if (tmpTime > 0) {
+                if (flag) {
+                    audioSource.PlayOneShot (gemSound);
+                    flag = false;
+                }
                 transform.position += new Vector3 (0, 0.01f, 0);
                 transform.Rotate (new Vector3 (0, 20, 0));
                 tmpTime -= Time.deltaTime;
