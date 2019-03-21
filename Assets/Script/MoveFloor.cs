@@ -20,12 +20,15 @@ public class MoveFloor : MonoBehaviour {
         Player = GameObject.Find ("chr_robot");
         localScale = transform.localScale;
         Lposition = transform.localPosition;
+        x -= Lposition.x;
+        y -= Lposition.y;
+        z -= Lposition.z;
     }
     void Update () {
         Debug.Log (Lposition);
         if (flag && flag2) {
             Player.transform.parent = transform;
-            iTween.MoveBy (this.gameObject, iTween.Hash ("x", x - Lposition.x, "y", y - Lposition.y, "z", z - Lposition.z, "time", moveTime));
+            iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
             transform.localScale = localScale;
             flag2 = false;
             x *= -1;
@@ -33,7 +36,6 @@ public class MoveFloor : MonoBehaviour {
             z *= -1;
         }
     }
-
     private void OnTriggerStay (Collider other) {
         if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
