@@ -8,8 +8,8 @@ public class EnemyAlienEye : MonoBehaviour {
     private Rigidbody PlayerRigid;
     [SerializeField] private float enemyAngle = 0;
     private float tempTime1 = 0.0f;
-    private float interval = 0.01f;
-    private int stack = 0;
+    [SerializeField] private float interval = 0.01f;
+    [SerializeField] private int stack = 0;
     private bool flag = false;
     private int temp = 0;
     void Start () {
