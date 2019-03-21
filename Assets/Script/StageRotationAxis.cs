@@ -6,6 +6,7 @@ public class StageRotationAxis : MonoBehaviour {
     private float direction;
     private PlayerMove PlayerMove;
     private GameObject StageGroup;
+    //右から侵入する側からの角度をstartAngleにするフラグ
     [SerializeField] private bool isEnterFromRight = false;
     [SerializeField] private float startAngle;
     [SerializeField] private float lastAngle;

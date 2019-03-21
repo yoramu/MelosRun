@@ -16,6 +16,7 @@ public class MoveFloor : MonoBehaviour {
     private Vector3 localScale;
     private Vector3 Lposition;
     void Start () {
+        //初期化
         rb = GetComponent<Rigidbody> ();
         Player = GameObject.Find ("chr_robot");
         localScale = transform.localScale;
@@ -25,7 +26,7 @@ public class MoveFloor : MonoBehaviour {
         z -= Lposition.z;
     }
     void Update () {
-        Debug.Log (Lposition);
+        //動く床が往復できるようにしている
         if (flag && flag2) {
             Player.transform.parent = transform;
             iTween.MoveBy (this.gameObject, iTween.Hash ("x", x, "y", y, "z", z, "time", moveTime));
@@ -38,6 +39,7 @@ public class MoveFloor : MonoBehaviour {
         }
     }
     private void OnTriggerStay (Collider other) {
+        //一定時間振動したあとに床が動き出す
         if (other.gameObject.name == "FootCollider") {
             smallFlag = false;
             tmpTime1 += Time.deltaTime;
@@ -56,6 +58,7 @@ public class MoveFloor : MonoBehaviour {
         }
     }
     private void OnTriggerExit (Collider other) {
+        //床から離れた時の様々な初期化
         Player.transform.parent = null;
         transform.localScale = localScale;
         flag = false;
