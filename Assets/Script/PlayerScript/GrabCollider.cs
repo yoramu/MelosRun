@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrabCollider : MonoBehaviour {
     private bool isCanGrabWall = false;
+    private bool isGrab = false;
     private GameObject player;
     private Rigidbody playerRigid;
     private FootCollider foot;
@@ -17,6 +18,9 @@ public class GrabCollider : MonoBehaviour {
     void Update () {
         //壁掴み
         if (isCanGrabWall && Input.GetKey (KeyCode.G)) {
+            isGrab = true;
+        }
+        if (isGrab) {
             playerRigid.velocity = Vector3.zero;
             foot.JumpCountReset ();
         }
@@ -34,6 +38,10 @@ public class GrabCollider : MonoBehaviour {
         PlayerMove.IsMoveTrue ();
         if (other.gameObject.CompareTag ("GrabWall")) {
             isCanGrabWall = false;
+            isGrab = false;
         }
+    }
+    public void IsGrabFalse () {
+        isGrab = false;
     }
 }

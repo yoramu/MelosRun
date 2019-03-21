@@ -10,10 +10,12 @@ public class FootCollider : MonoBehaviour {
     [SerializeField] private float Upspeed = 70;
     private GameObject player;
     private Rigidbody playerRigid;
+    private GrabCollider GrabCollider;
     [SerializeField] private AudioClip jumpSound;
     AudioSource audioSource;
     void Start () {
         player = transform.root.gameObject;
+        GrabCollider = GameObject.Find ("GrabCollider").GetComponent<GrabCollider> ();
         playerRigid = player.GetComponent<Rigidbody> ();
         audioSource = GetComponent<AudioSource> ();
     }
@@ -23,6 +25,7 @@ public class FootCollider : MonoBehaviour {
             playerRigid.velocity = Vector3.zero;
             playerRigid.AddForce (0f, Upspeed, 0f);
             isJumping = true;
+            GrabCollider.IsGrabFalse ();
             if (isExitCollider) {
                 jumpCount++;
             }

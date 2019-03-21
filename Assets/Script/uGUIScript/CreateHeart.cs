@@ -23,9 +23,7 @@ public class CreateHeart : MonoBehaviour {
             x += 30;
         }
     }
-    void Update () {
-        Debug.Log (PlayerStatus.PlayerHP);
-    }
+    void Update () { }
     public void AddHearts () {
         GameObject obj = (GameObject) Instantiate (HeartPrefab);
         listObj.Add (obj);
