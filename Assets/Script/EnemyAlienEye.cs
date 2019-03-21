@@ -7,13 +7,38 @@ public class EnemyAlienEye : MonoBehaviour {
     [SerializeField] private float speed = 5;
     private Rigidbody PlayerRigid;
     [SerializeField] private float enemyAngle = 0;
+    private float tempTime1 = 0.0f;
+    private float interval = 0.01f;
+    private int stack = 0;
+    private bool flag = false;
+    private int temp = 0;
     void Start () {
         PlayerRigid = GetComponent<Rigidbody> ();
     }
     void Update () {
         //ステージを回すときに敵がずれてしまうため、プレイヤーが敵と同じ角度の位置のフィールドにいないときは敵を停止させる
         if (Mathf.Floor (transform.parent.transform.rotation.eulerAngles.y) == enemyAngle) {
-            PlayerRigid.transform.localPosition += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
+            tempTime1 += Time.deltaTime;
+            if (tempTime1 >= interval) {
+                PlayerRigid.transform.localPosition += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
+                if (stack > 100) {
+                    direction *= -1;
+                    stack = 0;
+                    flag = true;
+                    // this.transform.Rotate (new Vector3 (0, 0, 180));
+                }
+                tempTime1 = 0;
+                stack += 1;
+            }
+        }
+        //敵を回す
+        if (flag) {
+            this.transform.Rotate (new Vector3 (0, 0, 10));
+            temp += 1;
+            if (temp > 17) {
+                flag = false;
+                temp = 0;
+            }
         }
     }
 }
