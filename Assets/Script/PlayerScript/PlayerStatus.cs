@@ -28,10 +28,6 @@ public class PlayerStatus : MonoBehaviour {
         tmpTime = InvincibleTime;
         scoreText.text = "Score:" + score;
         audioSource = GetComponent<AudioSource> ();
-        // GetComponent<Image> ().color = new Color (0f, 1.0f, 1.0f, 0.25f);
-        Color color = renderer.material.color;
-        color.a = 0.5f;
-        renderer.material.color = color;
     }
     void Update () {
         //無敵状態フラグ
