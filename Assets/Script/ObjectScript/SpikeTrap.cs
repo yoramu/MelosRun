@@ -9,8 +9,11 @@ public class SpikeTrap : MonoBehaviour {
 	public bool startActive = true;
 	public bool randomize = false;
 	private bool isActive;
-
+	[SerializeField] private AudioClip stabSound;
+	[SerializeField] private AudioClip putSound;
+	private AudioSource audioSource;
 	void Start () {
+		audioSource = GetComponent<AudioSource> ();
 		if (startActive) {
 			SetActive ();
 		} else {
@@ -22,6 +25,7 @@ public class SpikeTrap : MonoBehaviour {
 		float duration = activeDuration;
 		isActive = true;
 		spike.gameObject.SetActive (true);
+		audioSource.PlayOneShot (stabSound);
 		if (randomize) {
 			duration = Random.Range (activeDuration * .75f, activeDuration * 1.25f);
 		}
@@ -32,6 +36,7 @@ public class SpikeTrap : MonoBehaviour {
 		float duration = activeDuration;
 		isActive = false;
 		spike.gameObject.SetActive (false);
+		audioSource.PlayOneShot (putSound);
 		if (randomize) {
 			duration = Random.Range (inactiveDuration * .75f, inactiveDuration * 1.25f);
 		}
