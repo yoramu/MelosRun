@@ -19,7 +19,6 @@ public class RotateBoost : MonoBehaviour {
         if (isStoppingRotate) {
             if (z <= 20f) {
                 player.transform.Rotate (new Vector3 (0f, 0f, z));
-                //Debug.Log(player.transform.rotation.eulerAngles.y);
                 float ptrz = player.transform.rotation.eulerAngles.y;
                 if (260 < ptrz && ptrz < 280) {
                     isStoppingRotate = false;

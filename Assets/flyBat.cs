@@ -8,7 +8,5 @@ public class flyBat : MonoBehaviour {
     void Update () {
         transform.Rotate (0, 3, 0);
         transform.localPosition = new Vector3 (transform.localPosition.x, Mathf.PingPong (Time.time * 10, 1) + y, transform.localPosition.z);
-        // transform.localPosition += new Vector3 (0, para, 0);
-        // para *= -1;
     }
 }
