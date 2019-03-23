@@ -17,7 +17,7 @@ public class GrabCollider : MonoBehaviour {
     }
     void Update () {
         //壁掴み
-        if (isCanGrabWall && Input.GetKey (KeyCode.G)) {
+        if (isCanGrabWall && (Input.GetKey (KeyCode.G) || Input.GetKey (KeyCode.W))) {
             isGrab = true;
         }
         if (isGrab) {
