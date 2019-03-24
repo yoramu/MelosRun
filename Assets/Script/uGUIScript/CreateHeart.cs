@@ -14,7 +14,7 @@ public class CreateHeart : MonoBehaviour {
         for (int i = 0; i < PlayerStatus.PlayerHP; i++) {
             GameObject obj = (GameObject) Instantiate (HeartPrefab);
             listObj.Add (obj);
-            listObj[i].transform.SetParent (transform, false);
+            listObj[i].transform.SetParent (transform.GetChild (0), false);
             RectTransform RectTransform = listObj[i].GetComponent<RectTransform> ();
             RectTransform.anchorMin = new Vector2 (0, 1);
             RectTransform.anchorMax = new Vector2 (0, 1);
@@ -27,7 +27,7 @@ public class CreateHeart : MonoBehaviour {
     public void AddHearts () {
         GameObject obj = (GameObject) Instantiate (HeartPrefab);
         listObj.Add (obj);
-        listObj[PlayerStatus.PlayerHP - 1].transform.SetParent (transform, false);
+        listObj[PlayerStatus.PlayerHP - 1].transform.SetParent (transform.GetChild (0), false);
         RectTransform RectTransform = listObj[PlayerStatus.PlayerHP - 1].GetComponent<RectTransform> ();
         RectTransform.anchorMin = new Vector2 (0, 1);
         RectTransform.anchorMax = new Vector2 (0, 1);

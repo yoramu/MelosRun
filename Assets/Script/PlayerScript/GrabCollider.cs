@@ -8,16 +8,19 @@ public class GrabCollider : MonoBehaviour {
     private GameObject player;
     private Rigidbody playerRigid;
     private FootCollider foot;
+    public GameObject grabtext;
     private PlayerMove PlayerMove;
     void Start () {
         player = transform.root.gameObject;
         playerRigid = player.GetComponent<Rigidbody> ();
         PlayerMove = player.GetComponent<PlayerMove> ();
         foot = GameObject.Find ("FootCollider").GetComponent<FootCollider> ();
+        grabtext = GameObject.Find ("grabwalltext");
     }
     void Update () {
         //壁掴み
         if (isCanGrabWall && (Input.GetKey (KeyCode.G) || Input.GetKey (KeyCode.W))) {
+            grabtext.SetActive (false);
             isGrab = true;
         }
         if (isGrab) {

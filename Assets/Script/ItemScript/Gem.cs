@@ -14,7 +14,7 @@ public class Gem : MonoBehaviour {
     void Start () {
         ShowGem = GameObject.Find ("CanvasGUI").GetComponent<ShowGem> ();
         PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
-        upTime = 1;
+        upTime = 2;
         tmpTime = upTime;
         audioSource = GetComponent<AudioSource> ();
     }
@@ -23,7 +23,6 @@ public class Gem : MonoBehaviour {
         if (isMoveUp) {
             if (tmpTime > 0) {
                 if (flag) {
-                    audioSource.PlayOneShot (gemSound);
                     flag = false;
                 }
                 transform.position += new Vector3 (0, 0.01f, 0);
@@ -45,6 +44,7 @@ public class Gem : MonoBehaviour {
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("Player") && !isMoveUp) {
             PlayerStatus.getScore (1000);
+            audioSource.PlayOneShot (gemSound);
             isMoveUp = true;
         }
     }

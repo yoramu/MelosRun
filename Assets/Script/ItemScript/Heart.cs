@@ -8,11 +8,14 @@ public class Heart : MonoBehaviour {
     private bool isMoveUp = false;
     [SerializeField] private float upTime;
     private float tmpTime;
+    [SerializeField] private AudioClip heartSound;
+    private AudioSource audioSource;
     void Start () {
         PlayerStatus = GameObject.Find ("chr_robot").GetComponent<PlayerStatus> ();
         CreateHeart = GameObject.Find ("CanvasGUI").GetComponent<CreateHeart> ();
-        upTime = 1;
+        upTime = 2;
         tmpTime = upTime;
+        audioSource = GetComponent<AudioSource> ();
     }
     void Update () {
         //transform.Rotate (new Vector3 (0, 0, 5));
@@ -22,8 +25,6 @@ public class Heart : MonoBehaviour {
                 //transform.Rotate (new Vector3 (0, 0, 100));
                 tmpTime -= Time.deltaTime;
             } else {
-                PlayerStatus.AddPlayerHP ();
-                CreateHeart.AddHearts ();
                 tmpTime = upTime;
                 isMoveUp = false;
                 Destroy (gameObject);
@@ -32,6 +33,9 @@ public class Heart : MonoBehaviour {
     }
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("Player") && !isMoveUp) {
+            PlayerStatus.AddPlayerHP ();
+            CreateHeart.AddHearts ();
+            audioSource.PlayOneShot (heartSound);
             isMoveUp = true;
         }
     }
