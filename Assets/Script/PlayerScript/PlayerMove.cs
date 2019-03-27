@@ -9,23 +9,29 @@ public class PlayerMove : MonoBehaviour {
     private bool isRotate = true;
     public float direction { get; private set; } = 0;
     [SerializeField] private float speed = 5;
-    private Rigidbody PlayerRigid;
     private CapsuleCollider PlayerCollider;
     [SerializeField] private float adRotate = 500;
     private float maxRotate = 90; //回転角の最大値//
     private float tmpRotate = -90; //現在の回転角//
     private float startRotation; //最初のグローバルY座標//
+    private float cameraRotationY;
+    private float deltaTime;
+    private GameObject Camera;
     void Start () {
-        PlayerRigid = GetComponent<Rigidbody> ();
         PlayerCollider = GetComponent<CapsuleCollider> ();
         startRotation = transform.rotation.eulerAngles.y;
+        Camera = GameObject.Find ("MultipurposeCameraRig");
+
     }
     void Update () {
         float y = transform.rotation.eulerAngles.y;
         //キーを入力するとプレイヤーが左右に移動する
         direction = Input.GetAxis ("Horizontal");
+        deltaTime = Time.deltaTime;
+        cameraRotationY = Camera.transform.eulerAngles.y;
+
         if (isMove) {
-            PlayerRigid.position += new Vector3 (direction * Time.deltaTime * speed, 0.0f, 0.0f);
+            transform.position += new Vector3 (direction * speed * Mathf.Cos (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime, 0.0f, direction * speed * Mathf.Sin (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime);
         }
         //キャラの向き
         if (direction > 0 && isDirectionRight) {
@@ -37,18 +43,18 @@ public class PlayerMove : MonoBehaviour {
         //プレイヤーが移動する方向へ半周回る
         if (isRotate) {
             if (direction < 0) {
-                this.transform.Rotate (new Vector3 (0, 0, adRotate) * Time.deltaTime);
-                tmpRotate += (adRotate * Time.deltaTime);
+                this.transform.Rotate (new Vector3 (0, 0, adRotate) * deltaTime);
+                tmpRotate += (adRotate * deltaTime);
                 if (tmpRotate >= maxRotate) {
-                    this.transform.rotation = Quaternion.Euler (-90, 0, startRotation + 180);
+                    this.transform.rotation = Quaternion.Euler (-90, 0, cameraRotationY + startRotation + 180);
                     tmpRotate = 90;
                 }
             }
             if (direction > 0) {
-                this.transform.Rotate (new Vector3 (0, 0, -adRotate) * Time.deltaTime);
-                tmpRotate -= (adRotate * Time.deltaTime);
+                this.transform.Rotate (new Vector3 (0, 0, -adRotate) * deltaTime);
+                tmpRotate -= (adRotate * deltaTime);
                 if (tmpRotate <= maxRotate * -1) {
-                    this.transform.rotation = Quaternion.Euler (-90, 0, startRotation);
+                    this.transform.rotation = Quaternion.Euler (-90, 0, cameraRotationY + startRotation);
                     tmpRotate = -90;
                 }
             }
