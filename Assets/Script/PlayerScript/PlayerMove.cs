@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour {
         Camera = GameObject.Find ("MultipurposeCameraRig");
 
     }
-    void Update () {
+    void FixedUpdate () {
         float y = transform.rotation.eulerAngles.y;
         //キーを入力するとプレイヤーが左右に移動する
         direction = Input.GetAxis ("Horizontal");
@@ -31,7 +31,10 @@ public class PlayerMove : MonoBehaviour {
         cameraRotationY = Camera.transform.eulerAngles.y;
 
         if (isMove) {
-            transform.position += new Vector3 (direction * speed * Mathf.Cos (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime, 0.0f, direction * speed * Mathf.Sin (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime);
+            transform.position += new Vector3 (
+                direction * speed * Mathf.Cos (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime,
+                0.0f,
+                direction * speed * Mathf.Sin (-1 * cameraRotationY * Mathf.Deg2Rad) * deltaTime);
         }
         //キャラの向き
         if (direction > 0 && isDirectionRight) {

@@ -40,6 +40,7 @@ public class FootCollider : MonoBehaviour {
                 jumpCount = 0;
             }
         }
+
     }
     private void OnTriggerExit (Collider other) {
         if (other.gameObject.CompareTag ("floor") && !isExitCollider) {
